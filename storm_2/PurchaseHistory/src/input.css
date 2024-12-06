@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .flex-1 {
+    flex: 1;
+  }
+  .flex-2 {
+    flex: 2;
+  }
+  .flex-3 {
+    flex: 3;
+  }
+}
+
+@layer utilities {
+  .card_list .card:nth-child(even) {
+    @apply bg-[#fff0];
+  }
+}
+@layer components {
+  /* 自定義滾動條樣式 */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-200; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded; 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-800;
+  }
+}

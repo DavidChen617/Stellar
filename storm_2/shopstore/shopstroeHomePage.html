@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../commom/common.css">
+    <link rel="stylesheet" href="../layout/layout.css">
+    <link rel="stylesheet" href="./shopstroe.css">
+    <link rel="stylesheet" href="../Yourstore-navbar/Navbar.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="container" id="app">
+            <a class="navbar-brand logo" href="#"><img class="w-100" src="../img/logo_steam.png" alt=""></a>
+            <div class="navbar lg">
+                <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" type="button" >
+                                    商店
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li><a class="dropdown-item" href="#">探索佇列</a></li>
+                                    <li><a class="dropdown-item" href="../wishlist/wishlist.html">願望清單</a></li>
+                                    <li><a class="dropdown-item" href="#">點數商店</a></li>
+                                    <li><a class="dropdown-item" href="#">新聞</a></li>
+                                    <li><a class="dropdown-item" href="#">統計資料</a></li>
+                                    <li><a class="dropdown-item" href="#">關於</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" type="button">
+                                    社群
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li><a class="dropdown-item" href="#">討論區</a></li>
+                                    <li><a class="dropdown-item" href="#">工作坊</a></li>
+                                    <li><a class="dropdown-item" href="#">市集</a></li>
+                                    <li><a class="dropdown-item" href="#">實況直播</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">關於</a></li>
+                        <li class="breadcrumb-item"><a href="../customer-service/customer_service_homepage/customer_service.html">客服中心</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="log">
+                <button type="button" class="btn btn-primary btn-sm" @click="change_status">切換狀態</button>
+                <!-- 沒登入時顯示 -->
+                <template v-if="!current_status">
+                    <a href="../login/login.html">登入</a>
+                </template>
+                <!-- 登入後 -->
+                <template v-if="current_status">
+                <div class="log-in-type">
+                    <!-- notify，請點擊右上角小鈴鐺 -->
+                    <p class="notify">
+                        <button class="btn" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-notify" aria-expanded="false" aria-controls="collapse-notify">
+                            <img src="../img/bell.svg" alt="">
+                        </button>
+                    </p>
+                    <div class="collapse-notify collapse" id="collapse-notify">
+                        <div class="card card-body">
+                            <div class="title">
+                                <div class="title-name">
+                                    通知
+                                </div>
+                                <button class="btn view"><a href="../Stellar(NotifyPage)/Stellar(NotifyPage)_v2.html">檢視全部</a></button>
+                            </div>
+                            <div class="content">
+                                <!-- 沒通知 顯示-->
+                                <!-- <template> -->
+                                <p class="status">您目前沒有任何新通知。</p>
+                                <p class="sug">在此處您可見到與願望清單、好友、遊戲、物品庫和其他內容相關的Stellar內容</p>
+                                <!-- </template> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <div class="dropdown">
+                            <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                tenyadesu5487
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark py-0" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="../personal(user)/personal_firstpage.html">檢視我的個人檔案</a></li>
+                                <li><a class="dropdown-item" href="../account_page/account_page.html">帳戶詳細個人資料：<span>tenyadesu5487</span></a></li>
+                                <li><a class="dropdown-item" href="#">商店偏好設定</a></li>
+                                <li><a class="dropdown-item" href="#">檢視我的錢包：<span>NT$</span><span>77.88</span></a></li>
+                                <li><a class="dropdown-item" href="#">登出帳戶...</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="wallet"><span>NT$</span><span>77.88</span></a>
+
+                    </div>
+                    <div class="user-headshot"><img src="https://picsum.photos/34/34/?random=10"></div>
+                </div>
+
+                </template>
+            </div>
+            <nav class="navbar  bg-body-tertiary ">
+                <div class="container-fluid">
+
+                    <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+
+                        <span class="top"></span>
+                        <span class="middle"></span>
+                        <span class="bottom"></span>
+
+                    </button>
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
+                        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+
+                        <div class="offcanvas-body p-0">
+
+                            <ul class="accordion p-0" id="offcanvas-accordion">
+                                <!-- 登入前 的登入按鈕 -->
+                                <template v-if="!current_status">
+                                    <li class="aonly"><a href="../login/login.html">登入</a></li>
+                                </template>
+                                <!-- 登入後的 user資訊-->
+                                 <template v-if="current_status">
+                                <li class="card-user">
+                                    <div class="user-info">
+                                        <img src="https://picsum.photos/34/34/?random=10">
+                                        &ensp;
+                                        <a href="../personal(user)/personal_firstpage.html">tenyadesu5487</a>
+                                    </div>
+                                    <div class="wallet">
+                                        <span>錢包</span>
+                                        <span class="money">（NT$</span>
+                                        <span class="money dollar">77.88</span>
+                                        <span class="money">）</span>
+
+                                    </div>
+                                </li>
+                            </template>
+                                <!-- 通知，有登入才有 -->
+                                <template v-if="current_status">
+                                <li class="drop">
+                                    <div class="accordion-item">
+
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-notification"
+                                            aria-expanded="true" aria-controls="collapse-notification">
+                                            <p><span>通知&ensp;</span><span>0</span></p>
+                                        </button>
+
+                                        <div id="collapse-notification" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li>目前沒通知</li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                </template v-if="current_status">
+                                <li class="drop">
+                                    <div class="accordion-item">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-store"
+                                            aria-expanded="true" aria-controls="collapse-store">
+                                            <p>商店</p>
+                                        </button>
+
+                                        <div id="collapse-store" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                                    <li><a href="#">探索佇列</a></li>
+                                                    <li><a href="#">願望清單</a></li>
+                                                    <li><a href="#">點數商店</a></li>
+                                                    <li><a href="#">新聞</a></li>
+                                                    <li><a href="#">統計資料</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="drop">
+                                    <div class="accordion-item">
+
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-community"
+                                            aria-expanded="true" aria-controls="collapse-community">
+                                            <p>社群</p>
+                                        </button>
+
+                                        <div id="collapse-community" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                                    <li><a href="#">討論區</a></li>
+                                                    <li><a href="#">工作坊</a></li>
+                                                    <li><a href="#">市集</a></li>
+                                                    <li><a href="#">實況直播</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- 您和好友，也是登入才會有 -->
+                                <template v-if="current_status">
+                                <li class="drop">
+                                    <div class="accordion-item">
+
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-friend"
+                                            aria-expanded="true" aria-controls="collapse-friend">
+                                            <p>您和好友</p>
+                                        </button>
+
+                                        <div id="collapse-friend" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="#">動態</a></li>
+                                                    <li><a href="../personal(user)/personal_firstpage.html">個人檔案</a></li>
+                                                    <li><a href="#">好友</a></li>
+                                                    <li><a href="#">遊戲</a></li>
+                                                    <li><a href="#">內容</a></li>
+                                                    <li><a href="#">物品庫</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                </template>
+                                <!-- 聊天，登入後才有朋友可以聊天 -->
+                                <template v-if="current_status">
+                                <li class="aonly"><a href="../message/message.html">聊天</a></li>
+                                </template>
+                                <li class="aonly"><a href="#">關於</a></li>
+                                <li class="aonly"><a href="#">客服</a></li>
+                                <li class="func">
+                                    <!-- 以下3個只會再登入出現 -->
+                                    <template v-if="current_status"> 
+                                    <a href="#" class="btn  change-language">帳戶詳細資訊</a>
+                                    <a href="#" class="btn  change-language">商店偏好設定</a>
+                                    <a href="#" class="btn  change-language">變更使用者</a>
+                                    </template v-if="current_status">
+                                    <a href="#" class="btn  change-language">變更語言</a>
+                                    <a href="#" class=" btn  get-app">取得 Stellar 行動應用程式</a>
+                                    <button type="button" class="btn btn-primary btn-sm text-center" @click="change_status">切換狀態</button>
+                                </li>
+                            </ul>
+                            <div class="offcanvas-footer">
+                                <div>
+                                    <p>© 版權所有?並沒有。純為教育使用，非商業用途，所有商標皆純屬虛構。</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">隱私權政策</a></li>
+                                            <li class="breadcrumb-item"><a href="#">法律聲明</a></li>
+                                            <li class="breadcrumb-item"><a href="#">Stellar訂戶協議</a></li>
+                                            <li class="breadcrumb-item"><a href="#">退款</a></li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+    <main class="home_page  mx-auto">
+        <div id="yourshop-navbar">
+            <div class="accordion accordion-flush" id="title-vertical">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            您的商店
+                        </button>
+                    </div>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#title-vertical">
+                        <div class="row">
+                            <ul class="col-12">
+                                <li class="accordion-body d-block"><a href="#">首頁</a></li>
+                                <li class="accordion-body d-block"><a href="#">關注的遊戲與軟體</a></li>
+                                <li class="accordion-body d-block"><a href="#">偏好設定</a></li>
+                                <li class="accordion-body-active d-block">推薦商品</li>
+                                <li class="accordion-body d-block"><a href="#">探索佇列</a></li>
+                                <li class="accordion-body d-block"><a href="#">新推出佇列</a></li>
+                                <li class="accordion-body d-block"><a href="#">社群推薦</a></li>
+                                <li class="accordion-body d-block"><a href="#">互動式推薦專員</a></li>
+                                <li class="accordion-body d-block"><a href="#">好友間熱門</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            矚目新品
+                        </button>
+                    </div>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#title-vertical">
+                        <div class="row">
+                            <ul class="col-9">
+                                <li class="accordion-body d-block"><a href="#">暢銷商品</a></li>
+                                <li class="accordion-body d-block"><a href="#">最多人遊玩</a></li>
+                                <li class="accordion-body d-block"><a href="#">新推出</a></li>
+                                <li class="accordion-body d-block"><a href="#">即將發行</a></li>
+                                <li class="accordion-body d-block"><a href="#">最近更新</a></li>
+                            </ul>
+                            <ul class="col-3 border-start">
+                                <li class="accordion-body d-block"><a href="#">特別優惠</a></li>
+                                <li class="accordion-body d-block"><a href="#">特賣活動</a></li>
+                                <li class="accordion-body d-block"><a href="#">Storm 年度回顧</a></li>
+                                <li class="accordion-body d-block"><a href="#">Storm 新品節</a></li>
+                                <li class="accordion-body d-block"><a href="#">Storm 大獎</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseThree" aria-expanded="false"
+                            aria-controls="flush-collapseThree">
+                            類別
+                        </button>
+                    </div>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#title-vertical">
+                        <div class="row">
+                            <ul class="col-12">
+                                <li class="accordion-body d-block"><a href="#">免費遊玩</a></li>
+                                <li class="accordion-body d-block"><a href="#">試玩版</a></li>
+                                <li class="accordion-body d-block"><a href="#">搶先體驗</a></li>
+                                <li class="accordion-body d-block"><a href="#">支援控制器</a></li>
+                                <li class="accordion-body d-block"><a href="#">遠端唱玩</a></li>
+                                <li class="accordion-body d-block"><a href="#">VR 相關產品</a></li>
+                                <li class="accordion-body d-block"><a href="#">VR 相關硬體</a></li>
+                                <li class="accordion-body d-block"><a href="#">軟體</a></li>
+                                <li class="accordion-body d-block"><a href="#">原聲帶</a></li>
+                                <li class="accordion-body-active d-block">類型</li>
+                                <li class="accordion-body d-block"><a href="#">動作</a></li>
+                                <li class="accordion-body d-block"><a href="#">冒險</a></li>
+                                <li class="accordion-body d-block"><a href="#">角色扮演</a></li>
+                                <li class="accordion-body d-block"><a href="#">模擬</a></li>
+                                <li class="accordion-body d-block"><a href="#">策略</a></li>
+                                <li class="accordion-body d-block"><a href="#">運動和競速</a></li>
+                                <li class="accordion-body d-block"><a href="#">主題</a></li>
+                                <li class="accordion-body d-block"><a href="#">玩家支援</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <a class="accordion-button collapsed" href="#">
+                            點數商店
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <a class="accordion-button collapsed" href="#">
+                            新聞
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <a class="accordion-button collapsed" href="#">
+                            實驗室
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header accordion-button collapsed">
+                        <div class="search-container w-100">
+                            <input type="text" placeholder="搜尋" name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion accordion-flush" id="title-horizontally">
+                <div>
+                    <div>
+                        <div>
+                            <a class="nav-link dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">您的商店</a>
+                            <div class="accordion-collapse collapse dropdown-menu title-category"
+                                data-bs-parent="#title-horizontally">
+                                <div class="row">
+                                    <ul class="col-12">
+                                        <li class="accordion-body d-block"><a href="#">首頁</a></li>
+                                        <li class="accordion-body d-block"><a href="#">關注的遊戲與軟體</a></li>
+                                        <li class="accordion-body d-block"><a href="#">偏好設定</a></li>
+                                        <li class="accordion-body-active d-block">推薦商品</li>
+                                        <li class="accordion-body d-block"><a href="#">探索佇列</a></li>
+                                        <li class="accordion-body d-block"><a href="#">新推出佇列</a></li>
+                                        <li class="accordion-body d-block"><a href="#">社群推薦</a></li>
+                                        <li class="accordion-body d-block"><a href="#">互動式推薦專員</a></li>
+                                        <li class="accordion-body d-block"><a href="#">好友間熱門</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="nav-link dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">矚目新品</a>
+                            <div class="accordion-collapse collapse dropdown-menu title-category"
+                                data-bs-parent="#title-horizontally">
+                                <div class="row">
+                                    <ul class="col-6">
+                                        <li class="accordion-body d-block"><a href="#">暢銷商品</a></li>
+                                        <li class="accordion-body d-block"><a href="#">最多人遊玩</a></li>
+                                        <li class="accordion-body d-block"><a href="#">新推出</a></li>
+                                        <li class="accordion-body d-block"><a href="#">即將發行</a></li>
+                                        <li class="accordion-body d-block"><a href="#">最近更新</a></li>
+                                    </ul>
+                                    <ul class="col-6 border-start">
+                                        <li class="accordion-body d-block"><a href="#">特別優惠</a></li>
+                                        <li class="accordion-body d-block"><a href="#">特賣活動</a></li>
+                                        <li class="accordion-body d-block"><a href="#">Storm 年度回顧</a></li>
+                                        <li class="accordion-body d-block"><a href="#">Storm 新品節</a></li>
+                                        <li class="accordion-body d-block"><a href="#">Storm 大獎</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="nav-link dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">類別</a>
+                            <div class="accordion-collapse collapse dropdown-menu title-category"
+                                data-bs-parent="#title-horizontally">
+                                <div class="row">
+                                    <ul class="col-6">
+                                        <li class="accordion-body d-block"><a href="#">免費遊玩</a></li>
+                                        <li class="accordion-body d-block"><a href="#">試玩版</a></li>
+                                        <li class="accordion-body d-block"><a href="#">搶先體驗</a></li>
+                                        <li class="accordion-body d-block"><a href="#">支援控制器</a></li>
+                                        <li class="accordion-body d-block"><a href="#">遠端唱玩</a></li>
+                                        <li class="accordion-body d-block"><a href="#">VR 相關產品</a></li>
+                                        <li class="accordion-body d-block"><a href="#">VR 相關硬體</a></li>
+                                        <li class="accordion-body d-block"><a href="#">軟體</a></li>
+                                        <li class="accordion-body d-block"><a href="#">原聲帶</a></li>
+                                    </ul>
+                                    <ul class="col-6 border-start">
+                                        <li class="accordion-body-active d-block">類型</li>
+                                        <li class="accordion-body d-block"><a href="#">動作</a></li>
+                                        <li class="accordion-body d-block"><a href="#">冒險</a></li>
+                                        <li class="accordion-body d-block"><a href="#">角色扮演</a></li>
+                                        <li class="accordion-body d-block"><a href="#">模擬</a></li>
+                                        <li class="accordion-body d-block"><a href="#">策略</a></li>
+                                        <li class="accordion-body d-block"><a href="#">運動和競速</a></li>
+                                        <li class="accordion-body d-block"><a href="#">主題</a></li>
+                                        <li class="accordion-body d-block"><a href="#">玩家支援</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="accordion-button collapsed" href="#">
+                                點數商店
+                            </a>
+                        </div>
+                        <div>
+                            <a class="accordion-button collapsed" href="#">
+                                新聞
+                            </a>
+                        </div>
+                        <div>
+                            <a class="accordion-button collapsed" href="#">
+                                實驗室
+                            </a>
+                        </div>
+                    </div>
+                    <div class="w-25">
+                        <div class=" accordion-button collapsed">
+                            <div class="search-container w-100">
+                                <input type="text" placeholder="搜尋" name="search">
+                                <button type="submit"><a href="../Search/Search.html"><i class="fa fa-search" style="height: 24px;"></i></a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+        <div class="container ">
+            <div class="home_page_sort">
+                <div class="sort_header_title">推薦</div>
+                <div class="sort_items">
+                    <a href="#">好友</a>
+                    <a href="#">鑑賞家</a>
+                    <a href="#">標籤</a>
+                </div>
+                <div class="sort_header_title">瀏覽分類</div>
+                <div class="sort_items">
+                    <a href="#">暢銷商品</a>
+                    <a href="#">新推出</a>
+                    <a href="#">即將發行</a>
+                    <a href="#">特惠</a>
+                    <a href="#">VR 相關產品</a>
+                    <a href="#">支援控制器</a>
+                    <a href="#">非常適合 Deck</a>
+                </div>
+                <div class="sort_header_title">依類型瀏覽</div>
+                <div class="sort_items">
+                    <a href="#">免費遊玩</a>
+                    <a href="#">搶先體驗</a>
+                    <a href="#">休閒</a>
+                    <a href="#">冒險</a>
+                    <a href="#">動作</a>
+                    <a href="#">大型多人</a>
+                    <a href="#">模擬</a>
+                    <a href="#">獨立</a>
+                    <a href="#">競速</a>
+                    <a href="#">策略</a>
+                    <a href="#">角色扮演</a>
+                    <a href="#">運動</a>
+                </div>
+            </div>
+            <div class="home_page_featured_carousel">
+                <h2 class="featured_title">精選與推薦</h2>                
+                    <div id="featuredcarousel" class="carousel slide carousel-fade d-flex flex-wrap w-100"
+                        data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <a href="../Storm(ProductPage)/EachProductPage_v3.html">
+                                <div class="carousel-item active d-flex ">
+                                    <div class="featured_carousel_img">
+                                        <img src="./img/NARAKA0.jpg" class="d-block w-100 h-100" alt="...">
+                                    </div>
+                                    <div class="col-5 featured_carousel_main">
+                                        <h3>NARAKA: BLADEPOINT</h3>
+                                        <div class="content_screen row">
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/NARAKA1.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/NARAKA2.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/NARAKA3.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/NARAKA4.jpg">
+                                            </div>
+                                        </div>
+                                        <div class="nowavailable">
+                                            <h4>現已推出</h4>
+                                            <p>暢銷商品</p>
+                                        </div>
+                                        <div class="discount_price d-flex justify-content-between">
+                                            <p>免費遊玩</p>
+                                            <div><img src="./img/icon_platform_win.png" alt=""></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="../Storm(ProductPage)/EachProductPage_v3.html">
+                                <div class="carousel-item d-flex">
+                                    <div class="col-7 featured_carousel_img">
+                                        <img src="./img/k0.jpg" class="d-block w-100 h-100" alt="...">
+                                    </div>
+                                    <div class="col-5 featured_carousel_main">
+                                        <h3>黑神話：悟空</h3>
+                                        <div class="content_screen row">
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/k1.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/k2.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/k3.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/k4.jpg">
+                                            </div>
+                                        </div>
+                                        <div class="nowavailable">
+                                            <h4>現已推出</h4>
+                                            <p>暢銷商品</p>
+                                        </div>
+                                        <div class="discount_price d-flex justify-content-between">
+                                            <p>NT$ 1,280</p>
+                                            <div><img src="./img/icon_platform_win.png" alt=""></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="../Storm(ProductPage)/EachProductPage_v3.html">
+                                <div class="carousel-item d-flex">
+                                    <div class="col-7 featured_carousel_img">
+                                        <img src="./img/C0.jpg" class="d-block w-100 h-100" alt="...">
+                                    </div>
+                                    <div class="col-5 featured_carousel_main">
+                                        <h3>Counter-Strike 2</h3>
+                                        <div class="content_screen row">
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/k3.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/k1.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/k4.jpg">
+                                            </div>
+                                            <div class="content_screen_pic col-6">
+                                                <img src="./img/k2.jpg">
+                                            </div>
+                                        </div>
+                                        <div class="nowavailable">
+                                            <h4>現已推出</h4>
+                                            <p>暢銷商品</p>
+                                        </div>
+                                        <div class="discount_price d-flex justify-content-between">
+                                            <p>免費遊玩</p>
+                                            <div><img src="./img/icon_platform_win.png" alt=""></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <button class="carousel-control-prev left_btn" type="button" data-bs-target="#featuredcarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#featuredcarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#featuredcarousel" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#featuredcarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#featuredcarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                    </div>               
+            </div>
+
+            <div class="home_page_advertise">
+                <a href="#"><img src="./img/advertise.jpg"
+                        alt=""></a>
+            </div>
+
+            <div class="home_page_special_promotion_carousel">
+                <h2 class="special_promotion_title">特別優惠</h2>                
+                    <div id="special_promotion_carousel" class="carousel slide carousel-fade d-flex flex-wrap w-100"
+                        data-bs-ride="carousel">
+
+                        <div class="carousel-inner">
+                            <div class="carousel-item active d-flex ">
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="carousel-item d-flex">
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="carousel-item d-flex">
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card special_promotion_card">
+                                    <a href="#">
+                                        <img class="card-img-top" src="./img/spotlight_image1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>周末特價</h3>
+                                            <p class="card-text">特惠將於 8 月 14 日 上午 1:00 截止。</p>
+                                            <div class="finaly_price">
+                                                <div class="discount_pct">-25%</div>
+                                                <div class="card_price">
+                                                    <div class="original_price">NT$ 566</div>
+                                                    <div class="after_price">NT$ 141</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev left_btn" type="button"
+                            data-bs-target="#special_promotion_carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#special_promotion_carousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#special_promotion_carousel" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#special_promotion_carousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#special_promotion_carousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                    </div>
+               
+            </div>
+
+            <div class="home_page_Browse_categoryn_carousel">
+                <h2 class="Browse_categoryn_title">依類別瀏覽</h2>
+                
+                    <div id="Browse_categoryn_carousel" class="carousel slide carousel-fade d-flex flex-wrap w-100">
+
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn1.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>模擬</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn1.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>模擬</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn1.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>模擬</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn1.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>模擬</span></div>
+                                    </a>
+                                </div>                             
+                                
+                            </div>
+                            <div class="carousel-item">
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn2.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>策略</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn2.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>策略</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn2.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>策略</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn2.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>策略</span></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn3.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>日本動畫</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn3.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>日本動畫</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn3.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>日本動畫</span></div>
+                                    </a>
+                                </div>
+                                <div class="Browse_categoryn_card">
+                                    <a href="#">
+                                        <img src="./img/Browse_categoryn3.webp" alt="Card image cap">
+                                        <div class="gradient"></div>
+                                        <div class="Browse_categoryn_item"><span>日本動畫</span></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev left_btn" type="button"
+                            data-bs-target="#Browse_categoryn_carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#Browse_categoryn_carousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#Browse_categoryn_carousel" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#Browse_categoryn_carousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#Browse_categoryn_carousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                    </div>
+               
+            </div>
+
+            <div class="home_page_recommend">
+                <p>登入以檢視個人化推薦項目</p>
+                <div class="signin_btn">
+                    <a href="../login/login.html" class="btn_green">
+                        <span>登入</span>                   
+                    </a>
+                    <br>
+                    <br>
+                        或免費<a href="../regiter/regiter.html">註冊</a>並加入 Stellar
+                </div>
+            </div>
+
+            <div class="home_page_browse">
+                <h2 class="browse_title">瀏覽 Stellar</h2>
+                <div class="browse_btn">
+                    <a href="#">新推出</a>
+                    <a href="#">特惠</a>
+                    <a href="#">免費遊戲</a>
+                    <a href="#">依使用者標籤</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container home_page_container">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">新品與話題商品</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                        type="button" role="tab" aria-controls="nav-profile" aria-selected="false">暢銷商品</button>
+                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                        type="button" role="tab" aria-controls="nav-contact" aria-selected="false">熱門即將發行</button>
+                    <button class="nav-link" id="nav-special-tab" data-bs-toggle="tab" data-bs-target="#nav-special"
+                        type="button" role="tab" aria-controls="nav-special" aria-selected="false">特惠</button>
+                </div>
+            </nav>
+            <div class="home_page_tab">
+                <div class="tab_left_col">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                            aria-labelledby="nav-home-tab">
+                            <div class="tab_card_container">
+                                <div class="tab_card">
+                                    <div class="tab_pic"><img src="./img/k0.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>黑神話：悟空</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>視覺小說</span>
+                                                <span>, 冒險</span>
+                                                <span>, 日本動畫</span>
+                                                <span>, 劇情</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card default">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card default">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card default">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="tab_card_container">
+                                <div class="tab_card">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card">
+                                    <div class="tab_pic"><img src="./img/tab2_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Revue Starlight El Dorado</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>視覺小說</span>
+                                                <span>, 冒險</span>
+                                                <span>, 日本動畫</span>
+                                                <span>, 劇情</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card default">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card default">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="tab_card_container">
+                                <div class="tab_card">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card default">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card">
+                                    <div class="tab_pic"><img src="./img/tab2_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Revue Starlight El Dorado</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>視覺小說</span>
+                                                <span>, 冒險</span>
+                                                <span>, 日本動畫</span>
+                                                <span>, 劇情</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card default">
+                                    <div class="tab_pic"><img src="./img/tab1_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Hero Emblems II</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>日系角色扮演</span>
+                                                <span>, 回合制戰鬥</span>
+                                                <span>, 三消</span>
+                                                <span>, 假 3D</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-special" role="tabpanel" aria-labelledby="nav-special-tab">
+                            <div class="tab_card_container">
+                                <div class="tab_card">
+                                    <div class="tab_pic"><img src="./img/tab2_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Revue Starlight El Dorado</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>視覺小說</span>
+                                                <span>, 冒險</span>
+                                                <span>, 日本動畫</span>
+                                                <span>, 劇情</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab_card_container">
+                                <div class="tab_card">
+                                    <div class="tab_pic"><img src="./img/tab2_img_1.jpg" alt=""></div>
+                                    <div class="tab_txt">
+                                        <h3>Revue Starlight El Dorado</h3>
+                                        <div class="tab_txt_detail">
+                                            <div class="detail_pic"><img src="./img/icon_platform_win.png" alt=""></div>
+                                            <span class="detail_items">
+                                                <span>視覺小說</span>
+                                                <span>, 冒險</span>
+                                                <span>, 日本動畫</span>
+                                                <span>, 劇情</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="tab_item_discount">
+                                        <div class="discount_pct">-25%</div>
+                                        <div class="item_price">
+                                            <div class="item_original_price">NT$ 566</div>
+                                            <div class="item_after_price">NT$ 141</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_right_col">
+                    <div class="tab_preview_card">
+                        <h3>Hero Emblems II</h3>
+                        <div class="tab_preview_review">
+                            <p>整體使用者評論：</p>
+                            <span>好評</span>(47)
+                        </div>
+                        <div class="tab_preview_item">
+                            <a>日系角色扮演</a>
+                            <a>回合制戰鬥</a>
+                            <a>三消</a>
+                            <a>假 3D</a>
+                            <a>獨立</a>                            
+                        </div>
+                        <div class="tab_preview_img"><img src="./img/tab_preview_img1.jpg" alt=""></div>
+                        <div class="tab_preview_img"><img src="./img/tab_preview_img2.jpg" alt=""></div>
+                        <div class="tab_preview_img"><img src="./img/tab_preview_img3.jpg" alt=""></div>
+                        <div class="tab_preview_img"><img src="./img/tab_preview_img4.jpg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <hr>
+            <div class="privacy">
+                
+                <div class="text">
+                    <p>© 版權所有?並沒有。純為教育使用，非商業用途，所有商標皆純屬虛構。</p>
+                    <p>貨物既出，恕不退貨</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">隱私權政策</a></li>
+                            <li class="breadcrumb-item"><a href="#">法律聲明</a></li>
+                            <li class="breadcrumb-item"><a href="#">Storm訂戶協議</a></li>
+                            <li class="breadcrumb-item"><a href="#">退款</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="logo">
+                    <img src="../img/logo_steam.png" alt="">
+                </div>
+            </div>
+            <hr>
+            <div class="footer-navbar">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="https://www.build-school.com/">關於storm</a></li>
+                        <li class="breadcrumb-item"><a href="https://rdrc.mnd.gov.tw/page/index">人才招募</a></li>
+                        <li class="breadcrumb-item"><a href="../customer_service_homepage/customer_service.html">客服中心</a></li>
+                        <li class="breadcrumb-item"><a href="#">storm發行</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../layout/layout.js"></script>
+</body>
+
+</html>

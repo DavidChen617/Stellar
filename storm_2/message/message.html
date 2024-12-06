@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="./message.css">
+</head>
+
+<body>
+    <!--  bg-body-tertiary -->
+
+    <head>
+        <nav class="navbar navbar-expand ">
+            <div class="container-fluid ">
+                <a class="navbar-brand pic" href="#"><img src="../img/logo_steam.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="../shopstore/shopstroeHomePage.html">商店</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">社群</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../personal(user)/personal_firstpage.html">個人</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../customer-service/customer_service_homepage/customer_service.html">客服</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </head>
+    <main>
+        <div class="allDiv">
+            <!--  -->
+            <div class="userBox">
+                <!-- user -->
+                <div class="user">
+                    <img src="https://picsum.photos/50/50/?random=10">
+                    <div class="name">
+                        <span class="userName">使用者名稱</span>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li class="row">
+                                    <lo>
+                                        <input type="radio" name="state" value="線上" id="onlion" checked>
+                                        <label for="onlion">線上</label>
+                                    </lo>
+                                    <lo>
+                                        <input type="radio" name="state" value="離開" id="leave">
+                                        <label for="leave">離開</label>
+                                    </lo>
+                                    <lo>
+                                        <input type="radio" name="state" value="隱藏" id="hide">
+                                        <label for="hide">隱藏</label>
+                                        <p>顯示為離線但可聊天</p>
+                                    </lo>
+                                    <hr>
+                                    <lo>
+                                        <input type="checkbox" id="noMsg">
+                                        <label for="noMsg">請勿打擾</label>
+                                        <p>停用所有聊天通知</p>
+                                    </lo>
+                                    <hr>
+                                    <p>個人檔案名稱</p>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <p>
+                            狀態
+                        </p>
+                    </div>
+                    <button class="editBtn"><img src="../img/edit.png" alt=""></button>
+                </div>
+
+                <!-- /user\   \ friend / -->
+                <div class="friend">
+                    <span>好友</span>
+                    <div class="container-fluid serchBox">
+                        <form class="d-flex position-relative" role="search">
+                            <input class="form-control serchInput" type="search" aria-label="Search">
+                            <button class="btn position-absolute serchBtn" type="submit"><img src="../img/serch.png"
+                                    alt=""></button>
+                        </form>
+                    </div>
+                    <button class="addFriendBtn"><img src="../img/addFriend.png" alt=""></button>
+                </div>
+
+
+                <div class="accordion accordion-flush friendList " id="accordionFlushExample">
+                    <!--  -->
+                    <div class="accordion-item bg-0000 onlionFriend">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button friBtn bg-0000" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="true"
+                                aria-controls="flush-collapseOne">
+                                線上好友(0)
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body friCard_onlionList">
+                                <!--  -->
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <!--  -->
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <div class="friCard_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <!--  -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="accordion-item bg-0000 notOnlionFriend">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed friBtn bg-0000" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                離線好友
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body friCard_notOnlionList">
+                                <!--  -->
+                                <div class="friCard_notOnlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle friMoreBtn" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-dark">
+                                                <li class="row friMore">
+                                                    <lo>
+                                                        傳送訊息
+                                                    </lo>
+                                                    <lo>
+                                                        顯示個人檔案
+                                                    </lo>
+
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <!--  -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+
+
+
+
+            </div>
+            <div class="msgBox">
+                <p class="msgTopTxt">
+                    點擊好友開聊!
+                </p>
+                <div class="select_msg">
+
+                    <!-- BST -->
+                    <ul class="nav nav-tabs">
+                        <!-- card -->
+                        <li class="nav-item select_card">
+                            <input type="radio" class="" id="sel01" name="friend_select" checked> <label
+                                class="nav-link" for="sel01">
+
+                                <div class="select_friend_card is_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+                                    <button type="button" class="friend_close">X</button>
+                                </div>
+                            </label>
+                            <!--  -->
+                            <input type="radio" class="" id="sel02" name="friend_select">
+                            <label class="nav-link" for="sel02">
+                                <div class="select_friend_card is_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+                                    <button type="button" class="friend_close">X</button>
+                                </div>
+                            </label>
+                            <!--  -->
+                            <input type="radio" class="" id="sel03" name="friend_select">
+                            <label class="nav-link" for="sel03">
+                                <div class="select_friend_card is_onlion">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+
+                                    <div class="name">
+                                        <span class="userName">使用者名稱</span>
+                                        <p>
+                                            狀態
+                                        </p>
+                                    </div>
+                                    <button type="button" class="friend_close">X</button>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+
+                </div>
+                <!--  -->
+                <div class="message_box">
+                    <div class="talk_box">
+                        <!--  -->
+                        <div class="msg">
+                            <div class="talk_user">
+                                <img src="https://picsum.photos/30/30/?random=10">
+                                <span>使用者名稱</span>
+                                <time>下午7:02
+                                </time>
+                            </div>
+                            <ul class="talk_msg_box">
+                                <!--  -->
+                                <p class="talk_msg">
+                                    1
+                                </p>
+                                <!--  -->
+                            </ul>
+                        </div>
+                        <!--  -->
+                        <div class="msg">
+                            <div class="talk_user">
+                                <img src="https://picsum.photos/30/30/?random=10">
+                                <span>使用者名稱</span>
+                                <time>下午7:02</time>
+                            </div>
+                            <ul class="talk_msg_box">
+                                <!--  -->
+                                <p class="talk_msg">
+                                    1
+                                </p>
+                                <!--  -->
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="message_input_box">
+                        <input type="text">
+                        <button class="input_btn">></button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

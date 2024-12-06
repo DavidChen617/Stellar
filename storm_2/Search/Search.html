@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../commom/common.css">
+    <link rel="stylesheet" href="../layout/layout.css">
+    <link rel="stylesheet" href="./Seaarch.css">
+    <link rel="stylesheet" href="../Yourstore-navbar/Navbar.css">
+</head>
+
+
+<body>
+    <header>
+        <div class="container" id="app">
+            <a class="navbar-brand logo" href="#"><img class="w-100" src="../img/logo_steam.png" alt=""></a>
+            <div class="navbar lg">
+                <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" type="button">
+                                    商店
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li><a class="dropdown-item" href="#">探索佇列</a></li>
+                                    <li><a class="dropdown-item" href="#">願望清單</a></li>
+                                    <li><a class="dropdown-item" href="#">點數商店</a></li>
+                                    <li><a class="dropdown-item" href="#">新聞</a></li>
+                                    <li><a class="dropdown-item" href="#">統計資料</a></li>
+                                    <li><a class="dropdown-item" href="#">關於</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" type="button">
+                                    社群
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li><a class="dropdown-item" href="#">討論區</a></li>
+                                    <li><a class="dropdown-item" href="#">工作坊</a></li>
+                                    <li><a class="dropdown-item" href="#">市集</a></li>
+                                    <li><a class="dropdown-item" href="#">實況直播</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">關於</a></li>
+                        <li class="breadcrumb-item"><a href="#">客服中心</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="log">
+                <!-- 沒登入時顯示 -->
+                <template v-if="!current_status">
+                    <a href="#" @click="change_status">登入</a>
+                </template>
+                <!-- 登入後 -->
+                <template v-if="current_status">
+                    <div class="log-in-type">
+                        <!-- notify，請點擊右上角小鈴鐺 -->
+                        <p class="notify">
+                            <button class="btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse-notify" aria-expanded="false" aria-controls="collapse-notify">
+                                <img src="../img/bell.svg" alt="">
+                            </button>
+                        </p>
+                        <div class="collapse-notify collapse" id="collapse-notify">
+                            <div class="card card-body">
+                                <div class="title">
+                                    <div class="title-name">
+                                        通知
+                                    </div>
+                                    <button class="btn view">檢視全部</button>
+                                </div>
+                                <div class="content">
+                                    <!-- 沒通知 顯示-->
+                                    <!-- <template> -->
+                                    <p class="status">您目前沒有任何新通知。</p>
+                                    <p class="sug">在此處您可見到與願望清單、好友、遊戲、物品庫和其他內容相關的storm內容</p>
+                                    <!-- </template> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <div class="dropdown">
+                                <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    tenyadesu5487
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark py-0" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item"
+                                            href="../personal(user)/personal_firstpage.html">檢視我的個人檔案</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="../personal(user)/personal_firstpage.html">帳戶詳細個人資料：<span>tenyadesu5487</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">商店偏好設定</a></li>
+                                    <li><a class="dropdown-item" href="#">檢視我的錢包：<span>NT$</span><span>77.88</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" @click="change_status">登出帳戶...</a></li>
+                                </ul>
+                            </div>
+                            <a href="#" class="wallet"><span>NT$</span><span>77.88</span></a>
+
+                        </div>
+                        <div class="user-headshot"><img src="https://picsum.photos/34/34/?random=10"></div>
+                    </div>
+
+                </template>
+            </div>
+            <nav class="navbar  bg-body-tertiary ">
+                <div class="container-fluid">
+
+                    <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+
+                        <span class="top"></span>
+                        <span class="middle"></span>
+                        <span class="bottom"></span>
+
+                    </button>
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
+                        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+
+                        <div class="offcanvas-body p-0">
+
+                            <ul class="accordion p-0" id="offcanvas-accordion">
+                                <!-- 登入前 的登入按鈕 -->
+                                <template v-if="!current_status">
+                                    <li class="aonly" @click="change_status"><a>登入</a></li>
+                                </template>
+                                <!-- 登入後的 user資訊-->
+                                <template v-if="current_status">
+                                    <li class="card-user">
+                                        <div class="user-info">
+                                            <img src="https://picsum.photos/34/34/?random=10">
+                                            &ensp;
+                                            <a href="../personal(user)/personal_firstpage.html">tenyadesu5487</a>
+                                        </div>
+                                        <div class="wallet">
+                                            <span>錢包</span>
+                                            <span class="money">（NT$</span>
+                                            <span class="money dollar">77.88</span>
+                                            <span class="money">）</span>
+
+                                        </div>
+                                    </li>
+                                </template>
+                                <!-- 通知，有登入才有 -->
+                                <template v-if="current_status">
+                                    <li class="drop">
+                                        <div class="accordion-item">
+
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse-notification"
+                                                aria-expanded="true" aria-controls="collapse-notification">
+                                                <p><span>通知&ensp;</span><span>0</span></p>
+                                            </button>
+
+                                            <div id="collapse-notification" class="accordion-collapse collapse"
+                                                data-bs-parent="#offcanvas-accordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <li>目前沒通知</li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template v-if="current_status">
+                                <li class="drop">
+                                    <div class="accordion-item">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-store"
+                                            aria-expanded="true" aria-controls="collapse-store">
+                                            <p>商店</p>
+                                        </button>
+
+                                        <div id="collapse-store" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                                    <li><a href="#">探索佇列</a></li>
+                                                    <li><a href="#">願望清單</a></li>
+                                                    <li><a href="#">點數商店</a></li>
+                                                    <li><a href="#">新聞</a></li>
+                                                    <li><a href="#">統計資料</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="drop">
+                                    <div class="accordion-item">
+
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-community"
+                                            aria-expanded="true" aria-controls="collapse-community">
+                                            <p>社群</p>
+                                        </button>
+
+                                        <div id="collapse-community" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                                    <li><a href="#">討論區</a></li>
+                                                    <li><a href="#">工作坊</a></li>
+                                                    <li><a href="#">市集</a></li>
+                                                    <li><a href="#">實況直播</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- 您和好友，也是登入才會有 -->
+                                <template v-if="current_status">
+                                    <li class="drop">
+                                        <div class="accordion-item">
+
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse-friend"
+                                                aria-expanded="true" aria-controls="collapse-friend">
+                                                <p>您和好友</p>
+                                            </button>
+
+                                            <div id="collapse-friend" class="accordion-collapse collapse"
+                                                data-bs-parent="#offcanvas-accordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <li><a href="#">動態</a></li>
+                                                        <li><a href="../personal(user)/personal_firstpage.html">個人檔案</a>
+                                                        </li>
+                                                        <li><a href="#">好友</a></li>
+                                                        <li><a href="#">遊戲</a></li>
+                                                        <li><a href="#">內容</a></li>
+                                                        <li><a href="#">物品庫</a></li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template>
+                                <!-- 聊天，登入後才有朋友可以聊天 -->
+                                <template v-if="current_status">
+                                    <li class="aonly"><a href="../message/message.html">聊天</a></li>
+                                </template>
+                                <li class="aonly"><a href="#">關於</a></li>
+                                <li class="aonly"><a href="#">客服</a></li>
+                                <li class="func">
+                                    <!-- 以下3個只會再登入出現 -->
+                                    <template v-if="current_status">
+                                        <a href="#" class="btn  change-language">帳戶詳細資訊</a>
+                                        <a href="#" class="btn  change-language">商店偏好設定</a>
+                                        <a href="#" class="btn  change-language">變更使用者</a>
+                                    </template v-if="current_status">
+                                    <a href="#" class="btn  change-language">變更語言</a>
+                                    <a href="#" class=" btn  get-app">取得 Steam 行動應用程式</a>
+                                    <template v-if="current_status">
+                                        <a class="dropdown-item" href="#" @click="change_status">登出帳戶...</a>
+                                    </template>
+                                </li>
+                            </ul>
+                            <div class="offcanvas-footer">
+                                <div>
+                                    <p>© 版權所有?並沒有。純為教育使用，非商業用途，所有商標皆純屬虛構。</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">隱私權政策</a></li>
+                                            <li class="breadcrumb-item"><a href="#">法律聲明</a></li>
+                                            <li class="breadcrumb-item"><a href="#">Storm訂戶協議</a></li>
+                                            <li class="breadcrumb-item"><a href="#">退款</a></li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+    <main>
+        <div id="store-navbar">
+            <div class="accordion accordion-flush" id="title-vertical">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            您的商店
+                        </button>
+                    </div>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#title-vertical">
+                        <div class="row">
+                            <ul class="col-12">
+                                <li class="accordion-body d-block"><a href="#">首頁</a></li>
+                                <li class="accordion-body d-block"><a href="#">關注的遊戲與軟體</a></li>
+                                <li class="accordion-body d-block"><a href="#">偏好設定</a></li>
+                                <li class="accordion-body-active d-block">推薦商品</li>
+                                <li class="accordion-body d-block"><a href="#">探索佇列</a></li>
+                                <li class="accordion-body d-block"><a href="#">新推出佇列</a></li>
+                                <li class="accordion-body d-block"><a href="#">社群推薦</a></li>
+                                <li class="accordion-body d-block"><a href="#">互動式推薦專員</a></li>
+                                <li class="accordion-body d-block"><a href="#">好友間熱門</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            矚目新品
+                        </button>
+                    </div>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#title-vertical">
+                        <div class="row">
+                            <ul class="col-7 col-sm-9">
+                                <li class="accordion-body d-block"><a href="#">暢銷商品</a></li>
+                                <li class="accordion-body d-block"><a href="#">最多人遊玩</a></li>
+                                <li class="accordion-body d-block"><a href="#">新推出</a></li>
+                                <li class="accordion-body d-block"><a href="#">即將發行</a></li>
+                                <li class="accordion-body d-block"><a href="#">最近更新</a></li>
+                            </ul>
+                            <ul class="col-5 col-sm-3 border-start">
+                                <li class="accordion-body d-block"><a href="#">特別優惠</a></li>
+                                <li class="accordion-body d-block"><a href="#">特賣活動</a></li>
+                                <li class="accordion-body d-block"><a href="#">Storm 年度回顧</a></li>
+                                <li class="accordion-body d-block"><a href="#">Storm 新品節</a></li>
+                                <li class="accordion-body d-block"><a href="#">Storm 大獎</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseThree" aria-expanded="false"
+                            aria-controls="flush-collapseThree">
+                            類別
+                        </button>
+                    </div>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#title-vertical">
+                        <div class="row">
+                            <ul class="col-12">
+                                <li class="accordion-body d-block"><a href="#">免費遊玩</a></li>
+                                <li class="accordion-body d-block"><a href="#">試玩版</a></li>
+                                <li class="accordion-body d-block"><a href="#">搶先體驗</a></li>
+                                <li class="accordion-body d-block"><a href="#">支援控制器</a></li>
+                                <li class="accordion-body d-block"><a href="#">遠端唱玩</a></li>
+                                <li class="accordion-body d-block"><a href="#">VR 相關產品</a></li>
+                                <li class="accordion-body d-block"><a href="#">VR 相關硬體</a></li>
+                                <li class="accordion-body d-block"><a href="#">軟體</a></li>
+                                <li class="accordion-body d-block"><a href="#">原聲帶</a></li>
+                                <li class="accordion-body-active d-block">類型</li>
+                                <li class="accordion-body d-block"><a href="#">動作</a></li>
+                                <li class="accordion-body d-block"><a href="#">冒險</a></li>
+                                <li class="accordion-body d-block"><a href="#">角色扮演</a></li>
+                                <li class="accordion-body d-block"><a href="#">模擬</a></li>
+                                <li class="accordion-body d-block"><a href="#">策略</a></li>
+                                <li class="accordion-body d-block"><a href="#">運動和競速</a></li>
+                                <li class="accordion-body d-block"><a href="#">主題</a></li>
+                                <li class="accordion-body d-block"><a href="#">玩家支援</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <a class="accordion-button collapsed" href="#">
+                            點數商店
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <a class="accordion-button collapsed" href="#">
+                            新聞
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <a class="accordion-button collapsed" href="#">
+                            實驗室
+                        </a>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header accordion-button collapsed">
+                        <div class="search-container w-100">
+                            <input type="text" placeholder="搜尋" name="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion accordion-flush" id="title-horizontally">
+                <div class="store-controls">
+                    <button type="button" class="btn btn-primary btn-wishlist">
+                        <span>願望清單</span>
+                        <span>(</span>
+                        <span>X</span>
+                        <span>)</span>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-cart">
+                        <span>購物車</span>
+                        <span>(</span>
+                        <span>X</span>
+                        <span>)</span>
+                    </button>
+                </div>
+                <div class="store-navbar-area">
+                    <div>
+                        <div>
+                            <a class="dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">您的商店</a>
+                            <div class="accordion-collapse collapse dropdown-menu title-category"
+                                data-bs-parent="#title-horizontally">
+                                <div class="row">
+                                    <ul class="col-12">
+                                        <li class="accordion-body d-block"><a href="#">首頁</a></li>
+                                        <li class="accordion-body d-block"><a href="#">關注的遊戲與軟體</a></li>
+                                        <li class="accordion-body d-block"><a href="#">偏好設定</a></li>
+                                        <li class="accordion-body-active d-block">推薦商品</li>
+                                        <li class="accordion-body d-block"><a href="#">探索佇列</a></li>
+                                        <li class="accordion-body d-block"><a href="#">新推出佇列</a></li>
+                                        <li class="accordion-body d-block"><a href="#">社群推薦</a></li>
+                                        <li class="accordion-body d-block"><a href="#">互動式推薦專員</a></li>
+                                        <li class="accordion-body d-block"><a href="#">好友間熱門</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="nav-link dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">矚目新品</a>
+                            <div class="accordion-collapse collapse dropdown-menu title-category"
+                                data-bs-parent="#title-horizontally">
+                                <div class="row">
+                                    <ul class="col-6">
+                                        <li class="accordion-body d-block"><a href="#">暢銷商品</a></li>
+                                        <li class="accordion-body d-block"><a href="#">最多人遊玩</a></li>
+                                        <li class="accordion-body d-block"><a href="#">新推出</a></li>
+                                        <li class="accordion-body d-block"><a href="#">即將發行</a></li>
+                                        <li class="accordion-body d-block"><a href="#">最近更新</a></li>
+                                    </ul>
+                                    <ul class="col-6 border-start">
+                                        <li class="accordion-body d-block"><a href="#">特別優惠</a></li>
+                                        <li class="accordion-body d-block"><a href="#">特賣活動</a></li>
+                                        <li class="accordion-body d-block"><a href="#">Storm 年度回顧</a></li>
+                                        <li class="accordion-body d-block"><a href="#">Storm 新品節</a></li>
+                                        <li class="accordion-body d-block"><a href="#">Storm 大獎</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="nav-link dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">類別</a>
+                            <div class="accordion-collapse collapse dropdown-menu title-category"
+                                data-bs-parent="#title-horizontally">
+                                <div class="row">
+                                    <ul class="col-6">
+                                        <li class="accordion-body d-block"><a href="#">免費遊玩</a></li>
+                                        <li class="accordion-body d-block"><a href="#">試玩版</a></li>
+                                        <li class="accordion-body d-block"><a href="#">搶先體驗</a></li>
+                                        <li class="accordion-body d-block"><a href="#">支援控制器</a></li>
+                                        <li class="accordion-body d-block"><a href="#">遠端唱玩</a></li>
+                                        <li class="accordion-body d-block"><a href="#">VR 相關產品</a></li>
+                                        <li class="accordion-body d-block"><a href="#">VR 相關硬體</a></li>
+                                        <li class="accordion-body d-block"><a href="#">軟體</a></li>
+                                        <li class="accordion-body d-block"><a href="#">原聲帶</a></li>
+                                    </ul>
+                                    <ul class="col-6 border-start">
+                                        <li class="accordion-body-active d-block">類型</li>
+                                        <li class="accordion-body d-block"><a href="#">動作</a></li>
+                                        <li class="accordion-body d-block"><a href="#">冒險</a></li>
+                                        <li class="accordion-body d-block"><a href="#">角色扮演</a></li>
+                                        <li class="accordion-body d-block"><a href="#">模擬</a></li>
+                                        <li class="accordion-body d-block"><a href="#">策略</a></li>
+                                        <li class="accordion-body d-block"><a href="#">運動和競速</a></li>
+                                        <li class="accordion-body d-block"><a href="#">主題</a></li>
+                                        <li class="accordion-body d-block"><a href="#">玩家支援</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="accordion-button collapsed" href="#">
+                                點數商店
+                            </a>
+                        </div>
+                        <div>
+                            <a class="accordion-button collapsed" href="#">
+                                新聞
+                            </a>
+                        </div>
+                        <div>
+                            <a class="accordion-button collapsed" href="#">
+                                實驗室
+                            </a>
+                        </div>
+                    </div>
+                    <div class="w-25">
+                        <div class=" accordion-button collapsed">
+                            <div class="search-container w-100">
+                                <input type="text" placeholder="搜尋" name="search">
+                                <button type="submit"><i class="fa fa-search" style="height: 24px;"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar hamber">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                    aria-labelledby="offcanvasDarkNavbarLabel">
+
+                    <div class="offcanvas-body">
+                        <div class="search-box-hamber">
+
+                            <div class="accordion-game-search" id="accordion_game_price">
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="game-card-header accordion-button collapsed-" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse_price"
+                                            aria-expanded="true" aria-controls="collapse_price">
+                                            依價格縮小範圍
+                                        </button>
+                                    </h2>
+                                    <div id="collapse_price" class="accordion-collapse collapse show"
+                                        data-bs-parent="#accordion_price">
+                                        <div class="accordion-body">
+                                            <div class="range">
+                                                <input type="range" class="form-range" id="customRange1">
+                                                <label for="customRange1" class="form-label">低於NT$150</label>
+
+                                            </div>
+                                            <div class="rule"></div>
+
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="pricecheck_hb1">
+
+                                                <label class="form-check-label" for="pricecheck_hb1">
+                                                    特別優惠
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="pricecheck_hb2">
+                                                <label class="form-check-label" for="pricecheck_hb2">
+                                                    隱藏免費遊玩項目
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="accordion-game-search" id="accordion_game_mark">
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="game-card-header accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse_mark"
+                                            aria-expanded="false" aria-controls="collapse_mark">
+                                            依標籤縮小範圍
+                                        </button>
+                                    </h2>
+                                    <div id="collapse_mark" class="accordion-collapse collapse show"
+                                        data-bs-parent="#accordion_mark">
+                                        <div class="accordion-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="markcheck_hb1">
+                                                <label class="form-check-label" for="markcheck_hb1">
+                                                    單人
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="markcheck_hbmarkcheck_hbmarkcheck_hb2">
+                                                <label class="form-check-label"
+                                                    for="markcheck_hbmarkcheck_hbmarkcheck_hb2">
+                                                    模擬
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="markcheck_hbmarkcheck_hb3">
+                                                <label class="form-check-label" for="markcheck_hbmarkcheck_hb3">
+                                                    冒險
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="markcheck_hb4">
+                                                <label class="form-check-label" for="markcheck_hb4">
+                                                    休閒
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="markcheck_hb5">
+                                                <label class="form-check-label" for="markcheck_hb5">
+                                                    2D
+                                                </label>
+                                            </div>
+                                            <div class="search-keyword">
+                                                <input type="text" class="form-control" placeholder="搜尋更多標籤">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="accordion-game-search" id="accordion_game_player">
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="game-card-header accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse_player"
+                                            aria-expanded="false" aria-controls="collapse_player">
+                                            依玩家人數縮小範圍
+                                        </button>
+                                    </h2>
+                                    <div id="collapse_player" class="accordion-collapse collapse show"
+                                        data-bs-parent="#accordion_player">
+                                        <div class="accordion-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb1">
+                                                <label class="form-check-label" for="playercheck_hb1">
+                                                    單人
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb2playercheck_hb2">
+                                                <label classplayercheck_hb2playercheck_hb3="form-check-label"
+                                                    for="playercheck_hb2playercheck_hb2">
+                                                    多人
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb3">
+                                                <label class="form-check-label" for="playercheck_hb3">
+                                                    玩家對戰
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb4">
+                                                <label class="formplayercheck_hb4-check-label" for="playercheck_hb4">
+                                                    線上玩家對戰
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb5">
+                                                <label class="form-check-label" for="playercheck_hb5">
+                                                    區域網路玩家對戰
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb6">
+                                                <label class="form-check-label" for="playercheck_hb6">
+                                                    共享/分割螢幕玩家對戰
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hbplayercheck_hb7">
+                                                <label class="form-check-label" for="playercheck_hbplayercheck_hb7">
+                                                    合作
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb8">
+                                                <label class="form-check-label" for="playercheck_hb8">
+                                                    線上合作
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb9">
+                                                <label class="form-check-label" for="playercheck_hb9">
+                                                    區域網路合作
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb10">
+                                                <label class="form-check-label" for="playercheck_hb10">
+                                                    共享/分割螢幕合作
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb11">
+                                                <label class="form-check-label" for="playercheck_hb11">
+                                                    共享/分割螢幕
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="playercheck_hb12">
+                                                <label class="form-check-label" for="playercheck_hb12">
+                                                    跨平台多人連線
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+        </nav>
+
+        <div class="search-page-title mb-3">全部產品
+            <!-- <label for="" class="menu-btn"></label> -->
+        </div>
+        <div class="search-background">
+            <div class="search-page" id="search-in">
+                <div class="search-body">
+                    <div class="search-info mb-3">
+                        <div class="search-area">
+                            <div class="search-keyword">
+                                <input type="text" name="" id="aaa" placeholder="輸入搜尋詞彙或標籤">
+                                <button type="submit" class="btn btn-secondary">搜尋</button>
+                            </div>
+                            <div class="dropdown">
+                                <span>排序依據</span>
+                                <select class=" ms-2 form-select" aria-label="Default select">
+                                    <option selected>相關性</option>
+                                    <option>發行日期</option>
+                                    <option>名稱</option>
+                                    <option>最低價格</option>
+                                    <option>最高價格</option>
+                                    <option>使用者評論</option>
+
+                                </select>
+
+
+                                <!-- <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">相關性</a></li>
+                                    <li><a class="dropdown-item" href="#"></a></li>
+                                    <li><a class="dropdown-item" href="#">名稱</a></li>
+                                    <li><a class="dropdown-item" href="#">最低價格</a></li>
+                                    <li><a class="dropdown-item" href="#">最高價格</a></li>
+                                    <li><a class="dropdown-item" href="#">使用者評論</a></li>
+                                </ul> -->
+
+
+                            </div>
+                        </div>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/CS.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                Counter-Strike 2
+                                                <img src="https://store.akamai.steamstatic.com/public/images/v6/icon_platform_win.png?v=3"
+                                                    alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 12 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/APEX.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                APEX
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/Cyber.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                Cyberpunk 2077
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/DIABLO.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                暗黑破壞神
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/Elden.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                艾爾登法環
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/GTA.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                Grand Theft Auto
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/HUMAN.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                Once Human
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/2K24.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                NBA 2K24
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+                        <section>
+                            <a href="#">
+                                <div class="gamelist">
+                                    <div class="row mt-2">
+                                        <div class="col-5 aa">
+                                            <div class="game-img">
+                                                <img src="./Search/PUBG.jpg" alt="" width="113px" height="45px">
+                                            </div>
+                                            <div class="game-name">
+                                                PUBG
+                                                <img src="./Search/Windows.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-5 bb">
+                                            <div class="start-date col-6">
+                                                2012 年 8 月 22 日
+                                                <img src="./Search/Good.png" alt="">
+                                            </div>
+                                            <div class="price-area">
+                                                <div class="discount">
+                                                    -50%
+                                                </div>
+                                                <div class="game-price">
+
+                                                    <div class="original-price"> NT$&nbsp;<span>1,790.00</span>
+                                                    </div>
+                                                    <div class="discount-price">NT$&nbsp;<span>895.00</span></div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </section>
+
+
+                    </div>
+                    <div class="search-box">
+
+                        <div class="accordion-game-search" id="accordion_game_price">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="game-card-header accordion-button collapsed-" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse_price" aria-expanded="true"
+                                        aria-controls="collapse_price">
+                                        依價格縮小範圍
+                                    </button>
+                                </h2>
+                                <div id="collapse_price" class="accordion-collapse collapse show"
+                                    data-bs-parent="#accordion_game_price">
+                                    <div class="accordion-body">
+                                        <div class="range">
+                                            <input type="range" class="form-range" id="customRange1">
+                                            <label for="customRange1" class="form-label">低於NT$150</label>
+
+                                        </div>
+                                        <div class="rule"></div>
+
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="pricecheck1">
+                                            <label class="form-check-label" for="pricecheck1">
+                                                特別優惠
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="pricecheck2">
+                                            <label class="form-check-label" for="pricecheck2">
+                                                隱藏免費遊玩項目
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="accordion-game-search" id="accordion_game_mark">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="game-card-header accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse_mark" aria-expanded="false"
+                                        aria-controls="collapse_mark">
+                                        依標籤縮小範圍
+                                    </button>
+                                </h2>
+                                <div id="collapse_mark" class="accordion-collapse collapse show"
+                                    data-bs-parent="#accordion_mark">
+                                    <div class="accordion-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="markcheck1">
+                                            <label class="form-check-label" for="markcheck1">
+                                                單人
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="markcheck2">
+                                            <label class="form-check-label" for="markcheck2">
+                                                模擬
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="markcheck3">
+                                            <label class="form-check-label" for="markcheck3">
+                                                冒險
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="markcheck4">
+                                            <label class="form-check-label" for="markcheck4">
+                                                休閒
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="markcheck5">
+                                            <label class="form-check-label" for="markcheck5">
+                                                2D
+                                            </label>
+                                        </div>
+                                        <div class="search-keyword">
+                                            <input type="text" class="form-control" placeholder="搜尋更多標籤">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="accordion-game-search" id="accordion_game_player">
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="game-card-header accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse_player"
+                                        aria-expanded="false" aria-controls="collapse_player">
+                                        依玩家人數縮小範圍
+                                    </button>
+                                </h2>
+                                <div id="collapse_player" class="accordion-collapse collapse show"
+                                    data-bs-parent="#accordion_player">
+                                    <div class="accordion-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck1">
+                                            <label class="form-check-label" for="playercheck1">
+                                                單人
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck2">
+                                            <label class="form-check-label" for="playercheck2">
+                                                多人
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck3">
+                                            <label class="form-check-label" for="playercheck3">
+                                                玩家對戰
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck4">
+                                            <label class="form-check-label" for="playercheck4">
+                                                線上玩家對戰
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck5">
+                                            <label class="form-check-label" for="playercheck5">
+                                                區域網路玩家對戰
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck6">
+                                            <label class="form-check-label" for="playercheck6">
+                                                共享/分割螢幕玩家對戰
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck7">
+                                            <label class="form-check-label" for="playercheck7">
+                                                合作
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck8">
+                                            <label class="form-check-label" for="playercheck8">
+                                                線上合作
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck9">
+                                            <label class="form-check-label" for="playercheck9">
+                                                區域網路合作
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck10">
+                                            <label class="form-check-label" for="playercheck10">
+                                                共享/分割螢幕合作
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck11">
+                                            <label class="form-check-label" for="playercheck11">
+                                                共享/分割螢幕
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="playercheck12">
+                                            <label class="form-check-label" for="playercheck12">
+                                                跨平台多人連線
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="privacy">
+                <div class="text">
+                    <p>© 版權所有?並沒有。純為教育使用，非商業用途，所有商標皆純屬虛構。</p>
+                    <p>貨物既出，恕不退貨</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">隱私權政策</a></li>
+                            <li class="breadcrumb-item"><a href="#">法律聲明</a></li>
+                            <li class="breadcrumb-item"><a href="#">Storm訂戶協議</a></li>
+                            <li class="breadcrumb-item"><a href="#">退款</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="logo">
+                    <img src="../img/logo_steam.png" alt="">
+                </div>
+            </div>
+            <div class="footer-navbar">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="https://www.build-school.com/">關於storm</a></li>
+                        <li class="breadcrumb-item"><a href="https://rdrc.mnd.gov.tw/page/index">人才招募</a></li>
+                        <li class="breadcrumb-item"><a href="#">客服中心</a></li>
+                        <li class="breadcrumb-item"><a href="#">storm發行</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../layout/layout.js"></script>
+</body>
+
+</html>

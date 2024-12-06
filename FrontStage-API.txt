@@ -1,0 +1,5 @@
+-CloudinarySettings:CloudName dyhkudeb4 -CloudinarySettings:ApiKey 668869832675141 -CloudinarySettings:ApiSecret ff2HlRTKb981OO7P8uXm8SKir_o -CloudinarySettings:ApiBaseAddress
+https://api.cloudinary.com
+-MongoDbVectorSettings:ConnectionString mongodb+srv://stormstellar37:12345@cluster0.dknqf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0 -WEBSITE_TIME_ZONE "Taipei Standard Time" -StellarWebSettings:ConnectString
+https://stellarsong.azurewebsites.net/api/AuthenticationApi/GetLoginUser
+-JwtSettings:Issuer bs-ta -JwtSettings:SignKey abcdefghijklmnopqrstuvwxyz1234567890

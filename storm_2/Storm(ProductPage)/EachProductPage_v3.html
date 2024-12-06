@@ -1,0 +1,1922 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ProductPage demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../layout/layout.css">
+    <link rel="stylesheet" href="./EachProductPage_v3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Yourstore-navbar/Navbar.css">
+    <link rel="stylesheet" href="../add-shopping-Modal/shopping-modal.css">
+    <link rel="stylesheet" href="../commom/common.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="container" id="app">
+            <a class="navbar-brand logo" href="#"><img class="w-100" src="../img/logo_steam.png" alt=""></a>
+            <div class="navbar lg">
+                <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" type="button">
+                                    商店
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li><a class="dropdown-item" href="#">探索佇列</a></li>
+                                    <li><a class="dropdown-item" href="../wishlist/wishlist.html">願望清單</a></li>
+                                    <li><a class="dropdown-item" href="#">點數商店</a></li>
+                                    <li><a class="dropdown-item" href="#">新聞</a></li>
+                                    <li><a class="dropdown-item" href="#">統計資料</a></li>
+                                    <li><a class="dropdown-item" href="#">關於</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" type="button">
+                                    社群
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li><a class="dropdown-item" href="#">討論區</a></li>
+                                    <li><a class="dropdown-item" href="#">工作坊</a></li>
+                                    <li><a class="dropdown-item" href="#">市集</a></li>
+                                    <li><a class="dropdown-item" href="#">實況直播</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">關於</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="../customer-service/customer_service_homepage/customer_service.html">客服中心</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="log">
+                <button type="button" class="btn btn-primary btn-sm" @click="change_status">切換狀態</button>
+                <!-- 沒登入時顯示 -->
+                <template v-if="!current_status">
+                    <a href="../login/login.html">登入</a>
+                </template>
+                <!-- 登入後 -->
+                <template v-if="current_status">
+                    <div class="log-in-type">
+                        <!-- notify，請點擊右上角小鈴鐺 -->
+                        <p class="notify">
+                            <button class="btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse-notify" aria-expanded="false" aria-controls="collapse-notify">
+                                <img src="../img/bell.svg" alt="">
+                            </button>
+                        </p>
+                        <div class="collapse-notify collapse" id="collapse-notify">
+                            <div class="card card-body">
+                                <div class="title">
+                                    <div class="title-name">
+                                        通知
+                                    </div>
+                                    <button class="btn view"><a
+                                            href="../Storm(NotifyPage)/Storm(NotifyPage)_v2.html">檢視全部</a></button>
+                                </div>
+                                <div class="content">
+                                    <!-- 沒通知 顯示-->
+                                    <!-- <template> -->
+                                    <p class="status">您目前沒有任何新通知。</p>
+                                    <p class="sug">在此處您可見到與願望清單、好友、遊戲、物品庫和其他內容相關的storm內容</p>
+                                    <!-- </template> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <div class="dropdown">
+                                <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    tenyadesu5487
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark py-0" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item"
+                                            href="../personal(user)/personal_firstpage.html">檢視我的個人檔案</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="../account_page/account_page.html">帳戶詳細個人資料：<span>tenyadesu5487</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">商店偏好設定</a></li>
+                                    <li><a class="dropdown-item" href="#">檢視我的錢包：<span>NT$</span><span>77.88</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">登出帳戶...</a></li>
+                                </ul>
+                            </div>
+                            <a href="#" class="wallet"><span>NT$</span><span>77.88</span></a>
+
+                        </div>
+                        <div class="user-headshot"><img src="https://picsum.photos/34/34/?random=10"></div>
+                    </div>
+
+                </template>
+            </div>
+            <nav class="navbar  bg-body-tertiary ">
+                <div class="container-fluid">
+
+                    <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+
+                        <span class="top"></span>
+                        <span class="middle"></span>
+                        <span class="bottom"></span>
+
+                    </button>
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
+                        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+
+                        <div class="offcanvas-body p-0">
+
+                            <ul class="accordion p-0" id="offcanvas-accordion">
+                                <!-- 登入前 的登入按鈕 -->
+                                <template v-if="!current_status">
+                                    <li class="aonly"><a href="../login/login.html">登入</a></li>
+                                </template>
+                                <!-- 登入後的 user資訊-->
+                                <template v-if="current_status">
+                                    <li class="card-user">
+                                        <div class="user-info">
+                                            <img src="https://picsum.photos/34/34/?random=10">
+                                            &ensp;
+                                            <a href="../personal(user)/personal_firstpage.html">tenyadesu5487</a>
+                                        </div>
+                                        <div class="wallet">
+                                            <span>錢包</span>
+                                            <span class="money">（NT$</span>
+                                            <span class="money dollar">77.88</span>
+                                            <span class="money">）</span>
+
+                                        </div>
+                                    </li>
+                                </template>
+                                <!-- 通知，有登入才有 -->
+                                <template v-if="current_status">
+                                    <li class="drop">
+                                        <div class="accordion-item">
+
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse-notification"
+                                                aria-expanded="true" aria-controls="collapse-notification">
+                                                <p><span>通知&ensp;</span><span>0</span></p>
+                                            </button>
+
+                                            <div id="collapse-notification" class="accordion-collapse collapse"
+                                                data-bs-parent="#offcanvas-accordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <li>目前沒通知</li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template v-if="current_status">
+                                <li class="drop">
+                                    <div class="accordion-item">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-store"
+                                            aria-expanded="true" aria-controls="collapse-store">
+                                            <p>商店</p>
+                                        </button>
+
+                                        <div id="collapse-store" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                                    <li><a href="#">探索佇列</a></li>
+                                                    <li><a href="#">願望清單</a></li>
+                                                    <li><a href="#">點數商店</a></li>
+                                                    <li><a href="#">新聞</a></li>
+                                                    <li><a href="#">統計資料</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="drop">
+                                    <div class="accordion-item">
+
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-community"
+                                            aria-expanded="true" aria-controls="collapse-community">
+                                            <p>社群</p>
+                                        </button>
+
+                                        <div id="collapse-community" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                                    <li><a href="#">討論區</a></li>
+                                                    <li><a href="#">工作坊</a></li>
+                                                    <li><a href="#">市集</a></li>
+                                                    <li><a href="#">實況直播</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- 您和好友，也是登入才會有 -->
+                                <template v-if="current_status">
+                                    <li class="drop">
+                                        <div class="accordion-item">
+
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse-friend"
+                                                aria-expanded="true" aria-controls="collapse-friend">
+                                                <p>您和好友</p>
+                                            </button>
+
+                                            <div id="collapse-friend" class="accordion-collapse collapse"
+                                                data-bs-parent="#offcanvas-accordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <li><a href="#">動態</a></li>
+                                                        <li><a href="../personal(user)/personal_firstpage.html">個人檔案</a>
+                                                        </li>
+                                                        <li><a href="#">好友</a></li>
+                                                        <li><a href="#">遊戲</a></li>
+                                                        <li><a href="#">內容</a></li>
+                                                        <li><a href="#">物品庫</a></li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template>
+                                <!-- 聊天，登入後才有朋友可以聊天 -->
+                                <template v-if="current_status">
+                                    <li class="aonly"><a href="../message/message.html">聊天</a></li>
+                                </template>
+                                <li class="aonly"><a href="#">關於</a></li>
+                                <li class="aonly"><a href="#">客服</a></li>
+                                <li class="func">
+                                    <!-- 以下3個只會再登入出現 -->
+                                    <template v-if="current_status">
+                                        <a href="#" class="btn  change-language">帳戶詳細資訊</a>
+                                        <a href="#" class="btn  change-language">商店偏好設定</a>
+                                        <a href="#" class="btn  change-language">變更使用者</a>
+                                    </template v-if="current_status">
+                                    <a href="#" class="btn  change-language">變更語言</a>
+                                    <a href="#" class=" btn  get-app">取得 Steam 行動應用程式</a>
+                                    <button type="button" class="btn btn-primary btn-sm text-center"
+                                        @click="change_status">切換狀態</button>
+                                </li>
+                            </ul>
+                            <div class="offcanvas-footer">
+                                <div>
+                                    <p>© 版權所有?並沒有。純為教育使用，非商業用途，所有商標皆純屬虛構。</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">隱私權政策</a></li>
+                                            <li class="breadcrumb-item"><a href="#">法律聲明</a></li>
+                                            <li class="breadcrumb-item"><a href="#">Storm訂戶協議</a></li>
+                                            <li class="breadcrumb-item"><a href="#">退款</a></li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+    <main>
+
+        <div class="container">
+            <div class="nav-container">
+                <div class="accordion accordion-flush" id="title-vertical">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                您的商店
+                            </button>
+                        </div>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse py-2"
+                            data-bs-parent="#title-vertical">
+                            <div class="row">
+                                <ul class="col-12 pb-2">
+                                    <li class="accordion-body d-block"><a
+                                            href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li class="accordion-body d-block"><a href="#">關注的遊戲與軟體</a></li>
+                                    <li class="accordion-body d-block"><a href="#">偏好設定</a></li>
+                                    <li class="accordion-body-active d-block">推薦商品</li>
+                                    <li class="accordion-body d-block"><a href="#">探索佇列</a></li>
+                                    <li class="accordion-body d-block"><a href="#">新推出佇列</a></li>
+                                    <li class="accordion-body d-block"><a href="#">社群推薦</a></li>
+                                    <li class="accordion-body d-block"><a href="#">互動式推薦專員</a></li>
+                                    <li class="accordion-body d-block"><a href="#">好友間熱門</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                矚目新品
+                            </button>
+                        </div>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse py-2"
+                            data-bs-parent="#title-vertical">
+                            <div class="row">
+                                <ul class="col-9">
+                                    <li class="accordion-body d-block"><a href="#">暢銷商品</a></li>
+                                    <li class="accordion-body d-block"><a href="#">最多人遊玩</a></li>
+                                    <li class="accordion-body d-block"><a href="#">新推出</a></li>
+                                    <li class="accordion-body d-block"><a href="#">即將發行</a></li>
+                                    <li class="accordion-body d-block"><a href="#">最近更新</a></li>
+                                </ul>
+                                <ul class="col-3 border-start">
+                                    <li class="accordion-body d-block"><a href="#">特別優惠</a></li>
+                                    <li class="accordion-body d-block"><a href="#">特賣活動</a></li>
+                                    <li class="accordion-body d-block"><a href="#">Storm 年度回顧</a></li>
+                                    <li class="accordion-body d-block"><a href="#">Storm 新品節</a></li>
+                                    <li class="accordion-body d-block"><a href="#">Storm 大獎</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                類別
+                            </button>
+                        </div>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse py-2"
+                            data-bs-parent="#title-vertical">
+                            <div class="row">
+                                <ul class="col-12 pb-2">
+                                    <li class="accordion-body d-block"><a href="#">免費遊玩</a></li>
+                                    <li class="accordion-body d-block"><a href="#">試玩版</a></li>
+                                    <li class="accordion-body d-block"><a href="#">搶先體驗</a></li>
+                                    <li class="accordion-body d-block"><a href="#">支援控制器</a></li>
+                                    <li class="accordion-body d-block"><a href="#">遠端唱玩</a></li>
+                                    <li class="accordion-body d-block"><a href="#">VR 相關產品</a></li>
+                                    <li class="accordion-body d-block"><a href="#">VR 相關硬體</a></li>
+                                    <li class="accordion-body d-block"><a href="#">軟體</a></li>
+                                    <li class="accordion-body d-block"><a href="#">原聲帶</a></li>
+                                    <li class="accordion-body-active d-block">類型</li>
+                                    <li class="accordion-body d-block"><a href="#">動作</a></li>
+                                    <li class="accordion-body d-block"><a href="#">冒險</a></li>
+                                    <li class="accordion-body d-block"><a href="#">角色扮演</a></li>
+                                    <li class="accordion-body d-block"><a href="#">模擬</a></li>
+                                    <li class="accordion-body d-block"><a href="#">策略</a></li>
+                                    <li class="accordion-body d-block"><a href="#">運動和競速</a></li>
+                                    <li class="accordion-body d-block"><a href="#">主題</a></li>
+                                    <li class="accordion-body d-block"><a href="#">玩家支援</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <a class="accordion-button collapsed" href="#">
+                                點數商店
+                            </a>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <a class="accordion-button collapsed" href="#">
+                                新聞
+                            </a>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <a class="accordion-button collapsed" href="#">
+                                實驗室
+                            </a>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header accordion-button collapsed">
+                            <div class="search-container w-100">
+                                <input type="text" placeholder="搜尋" name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion accordion-flush" id="title-horizontally">
+                    <div>
+                        <div>
+                            <div>
+                                <a class="nav-link dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">您的商店</a>
+                                <div class="accordion-collapse collapse py-2 dropdown-menu"
+                                    data-bs-parent="#title-horizontally">
+                                    <div class="row">
+                                        <ul class="col-12 pb-2">
+                                            <li class="accordion-body d-block"><a
+                                                    href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                            <li class="accordion-body d-block"><a href="#">關注的遊戲與軟體</a></li>
+                                            <li class="accordion-body d-block"><a href="#">偏好設定</a></li>
+                                            <li class="accordion-body-active d-block">推薦商品</li>
+                                            <li class="accordion-body d-block"><a href="#">探索佇列</a></li>
+                                            <li class="accordion-body d-block"><a href="#">新推出佇列</a></li>
+                                            <li class="accordion-body d-block"><a href="#">社群推薦</a></li>
+                                            <li class="accordion-body d-block"><a href="#">互動式推薦專員</a></li>
+                                            <li class="accordion-body d-block"><a href="#">好友間熱門</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <a class="nav-link dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">矚目新品</a>
+                                <div class="accordion-collapse collapse py-2 dropdown-menu"
+                                    data-bs-parent="#title-horizontally">
+                                    <div class="row">
+                                        <ul class="col-6">
+                                            <li class="accordion-body d-block"><a href="#">暢銷商品</a></li>
+                                            <li class="accordion-body d-block"><a href="#">最多人遊玩</a></li>
+                                            <li class="accordion-body d-block"><a href="#">新推出</a></li>
+                                            <li class="accordion-body d-block"><a href="#">即將發行</a></li>
+                                            <li class="accordion-body d-block"><a href="#">最近更新</a></li>
+                                        </ul>
+                                        <ul class="col-6 border-start">
+                                            <li class="accordion-body d-block"><a href="#">特別優惠</a></li>
+                                            <li class="accordion-body d-block"><a href="#">特賣活動</a></li>
+                                            <li class="accordion-body d-block"><a href="#">Storm 年度回顧</a></li>
+                                            <li class="accordion-body d-block"><a href="#">Storm 新品節</a></li>
+                                            <li class="accordion-body d-block"><a href="#">Storm 大獎</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <a class="nav-link dropdown-toggle accordion-button collapsed" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">類別</a>
+                                <div class="accordion-collapse collapse py-2 dropdown-menu title-category"
+                                    data-bs-parent="#title-horizontally">
+                                    <div class="row">
+                                        <ul class="col-6">
+                                            <li class="accordion-body d-block"><a href="#">免費遊玩</a></li>
+                                            <li class="accordion-body d-block"><a href="#">試玩版</a></li>
+                                            <li class="accordion-body d-block"><a href="#">搶先體驗</a></li>
+                                            <li class="accordion-body d-block"><a href="#">支援控制器</a></li>
+                                            <li class="accordion-body d-block"><a href="#">遠端唱玩</a></li>
+                                            <li class="accordion-body d-block"><a href="#">VR 相關產品</a></li>
+                                            <li class="accordion-body d-block"><a href="#">VR 相關硬體</a></li>
+                                            <li class="accordion-body d-block"><a href="#">軟體</a></li>
+                                            <li class="accordion-body d-block"><a href="#">原聲帶</a></li>
+                                        </ul>
+                                        <ul class="col-6 border-start">
+                                            <li class="accordion-body-active d-block">類型</li>
+                                            <li class="accordion-body d-block"><a href="#">動作</a></li>
+                                            <li class="accordion-body d-block"><a href="#">冒險</a></li>
+                                            <li class="accordion-body d-block"><a href="#">角色扮演</a></li>
+                                            <li class="accordion-body d-block"><a href="#">模擬</a></li>
+                                            <li class="accordion-body d-block"><a href="#">策略</a></li>
+                                            <li class="accordion-body d-block"><a href="#">運動和競速</a></li>
+                                            <li class="accordion-body d-block"><a href="#">主題</a></li>
+                                            <li class="accordion-body d-block"><a href="#">玩家支援</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <a class="accordion-button collapsed" href="#">
+                                    點數商店
+                                </a>
+                            </div>
+                            <div>
+                                <a class="accordion-button collapsed" href="#">
+                                    新聞
+                                </a>
+                            </div>
+                            <div>
+                                <a class="accordion-button collapsed" href="#">
+                                    實驗室
+                                </a>
+                            </div>
+                        </div>
+                        <div class="w-25">
+                            <div class=" accordion-button collapsed">
+                                <div class="search-container w-100">
+                                    <input type="text" placeholder="搜尋" name="search">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="for-background" class="for-background container">
+                <!-- md display -->
+                <div class="page_title_area">
+                    <div class="blockbg">
+                        <a href="#">所有遊戲</a>
+                        &gt;
+                        <a href="#">動作遊戲</a>
+                        &gt;
+                        <a href="#"><span>黑神話：悟空</span></a>
+                    </div>
+                    <div class="breadcrumbs">
+                        <div class="breadcrumbs-title">
+                            <div id="appHubAppName" class="apphub_AppName">黑神話：悟空</div>
+                        </div>
+                        <div class="social-center">
+                            <a type="button" class="btn btn-secondary wish-list" style="display: inline-block;">
+                                <span>社群中心</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 主要圖片 --> <!-- sm display -->
+                <div class="responsive_page_header_img">
+                    <img style="width:100%;" src="main_img.jpg">
+                </div>
+                <!-- card -->
+                <div class="card">
+                    <div class="card-body lg-title-carousel">
+                        <!-- sm display -->
+                        <h5 class="card-title for-larger-500-none">黑神話：悟空</h5>
+                        <!-- md display -->
+                        <!-- lg d-flex -->
+                        <div class="contain-card-tag for-lower-500-none for-larger-500-block lg-contain-card-tag">
+                            <div class="md-card lg-card">
+                                <div class="md_header_img lg_header_img">
+                                    <img src="./md_header_tchinese.jpg" alt="">
+                                </div>
+                                <div class="app_header_grid_container md-card-body lg-card-body">
+                                    <div class="md-card-text">
+                                        <p>
+                                            《黑神話：悟空》是一款以中國神話為背景的動作角色扮演遊戲。在游戲中你將扮演一位“天命人”，爲了探尋昔日傳奇的真相，踏上一條充滿危險與驚奇的西游之路。
+                                        </p>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="grid_label grid_date">所有評論</div>
+                                        <div class="grid_content grid_date">
+                                            無使用者評論
+                                        </div>
+                                    </div>
+                                    <div class="d-flex md-release-date">
+                                        <div class="grid_label grid_date">發行日</div>
+                                        <div class="grid_content grid_date">
+                                            2024 年 8 月 20 日
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="grid_label">開發人員</div>
+                                        <div class="grid_content">
+                                            <a href="#">Game Science</a>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="grid_label">發行商</div>
+                                        <div class="grid_content">
+                                            <a href="#">Game Science</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- md-tags -->
+                            <div id="glanceCtnResponsiveRight " class="glance_ctn_responsive_right">
+                                <div class="responsive_block_header for-larger-500-none">標籤</div>
+                                <div class="glance_tags_ctn popular_tags_ctn md-label">
+                                    <div class="glance_tags_label for-larger-500-block">使用者為此產品所選用的熱門標籤：</div>
+                                    <div class="all-tags md-tags">
+                                        <div class="md-except-plus">
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                神話
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                動作角色扮演
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                動作
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                角色扮演
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                戰鬥
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                類魂
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                劇情豐富
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                黑暗奇幻
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                單人
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: none;">
+                                                劇情
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                動作冒險
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                氛圍
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                                冒險
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: none;">
+                                                3D
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: none;">
+                                                奇幻
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: none;">
+                                                砍殺
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: none;">
+                                                暴力
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: none;">
+                                                音樂
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: none;">
+                                                困難
+                                            </a>
+                                            <a class="btn btn-secondary app_tag" style="display: none;">
+                                                愛情
+                                            </a>
+                                        </div>
+                                        <!-- <div class="md-add-btn-contain">
+                                            <button type="button" class="btn btn-secondary app_tag md-add-btn"
+                                                style="display: inline-block;">
+                                                +
+                                            </button>
+                                        </div> -->
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!-- sm display -->
+                        <div class="app_header_grid_container for-larger-500-none">
+                            <div class="d-flex">
+                                <div class="grid_label">開發人員</div>
+                                <div class="grid_content">
+                                    <a href="#">Game Science</a>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="grid_label">發行商</div>
+                                <div class="grid_content">
+                                    <a href="#">Game Science</a>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="grid_label grid_date">發行日</div>
+                                <div class="grid_content grid_date">
+                                    2024 年 8 月 20 日
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text for-larger-500-none">
+                            《黑神話：悟空》是一款以中國神話為背景的動作角色扮演遊戲。在游戲中你將扮演一位“天命人”，爲了探尋昔日傳奇的真相，踏上一條充滿危險與驚奇的西游之路。
+                        </p>
+                        <!-- sm tag -->
+                        <div id="glanceCtnResponsiveRight " class="glance_ctn_responsive_right for-larger-500-none">
+                            <div class="responsive_block_header">標籤</div>
+                            <div class="glance_tags_ctn popular_tags_ctn">
+                                <div class="glance_tags_label">使用者為此產品所選用的熱門標籤：</div>
+                                <div class="all-tags sm-tags">
+                                    <!-- <div class="except-plus">
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            神話
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            動作角色扮演
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            動作
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            角色扮演
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            戰鬥
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            類魂
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            劇情豐富
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            黑暗奇幻
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            單人
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag" style="display: none;">
+                                            劇情
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            動作冒險
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            氛圍
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag"
+                                            style="display: inline-block;">
+                                            冒險
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag" style="display: none;">
+                                            3D
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag" style="display: none;">
+                                            奇幻
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag" style="display: none;">
+                                            砍殺
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag" style="display: none;">
+                                            暴力
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag" style="display: none;">
+                                            音樂
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag" style="display: none;">
+                                            困難
+                                        </button>
+                                        <button type="button" class="btn btn-secondary app_tag" style="display: none;">
+                                            愛情
+                                        </button>
+                                    </div> -->
+                                    <div class="except-plus">
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            神話
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            動作角色扮演
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            動作
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            角色扮演
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            戰鬥
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            類魂
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            劇情豐富
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            黑暗奇幻
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            單人
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: none;">
+                                            劇情
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            動作冒險
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            氛圍
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: inline-block;">
+                                            冒險
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: none;">
+                                            3D
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: none;">
+                                            奇幻
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: none;">
+                                            砍殺
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: none;">
+                                            暴力
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: none;">
+                                            音樂
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: none;">
+                                            困難
+                                        </a>
+                                        <a class="btn btn-secondary app_tag" style="display: none;">
+                                            愛情
+                                        </a>
+                                    </div>
+                                    <!-- <div class="add-btn-contain">
+                                        <button type="button" class="btn btn-secondary app_tag add-btn"
+                                            style="display: inline-block;">
+                                            +
+                                        </button>
+                                    </div> -->
+                                    <!-- <div class="app_tag add_button" data-panel="{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}" onclick="ShowAppTagModal( 2358720 )">+</div> -->
+                                </div>
+                            </div>
+                            <!-- comment -->
+                            <div class="responsive_block_header comment">評論</div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="無使用者評論" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <!-- carousel -->
+                        <!-- lg d-flex -->
+                        <div class="highlight_overflow lg-highlight_overflow">
+                            <div id="highlight_player_area">
+                                <!-- <img src="./Carousel_1.jpg" alt=""> -->
+                                <video autoplay muted controls>
+                                    <source src="./movie_title.webm" type="video/webm">
+                                    您的瀏覽器不支援 HTML5 影片。
+                                </video>
+
+                            </div>
+                            <div id="highlight_strip">
+                                <div class="highlight_strip-container container">
+                                    <div class="row highlight-strip-row md-carousel ld-carousel sm-carousel">
+                                        <div class="col-3">
+                                            <img src="./video_image1.png" data-src="./movie_title.webm" alt="">
+                                        </div>
+                                        <div class="col-3"><img src="./Carousel_1.jpg" data-src="./Carousel_1.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_2.jpg" data-src="./Carousel_2.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_3.jpg" data-src="./Carousel_3.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_4.jpg" data-src="./Carousel_4.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_5.jpg" data-src="./Carousel_5.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_5.jpg" data-src="./Carousel_5.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_5.jpg" data-src="./Carousel_5.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_5.jpg" data-src="./Carousel_5.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_5.jpg" data-src="./Carousel_5.jpg"
+                                                alt=""></div>
+                                        <div class="col-3"><img src="./Carousel_5.jpg" data-src="./Carousel_5.jpg"
+                                                alt=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 願望清單 -->
+                <div class="queue_overflow_ctn">
+                    <div id="add_to_wishlist_area">
+                        <button type="button" class="btn btn-secondary wish-list for_checked"
+                            style="display: inline-block;">
+                            <span>新增至您的願望清單</span>
+                        </button>
+                    </div>
+                    <div id="rowBtnActions" class="d-flex md-follow-ignore">
+                        <button id="icon_share" type="button" class="btn btn-secondary wish-list for-larger-500-none">
+                            <span><img src="./icon_share_android.svg" alt=""></span>
+                        </button>
+                        <button id="icon_report" type="button" class="btn btn-secondary wish-list for-larger-500-none">
+                            <span><img src="./icon_report.svg" alt=""></span>
+                        </button>
+                        <button id="icon_focus" type="button" class="btn btn-secondary wish-list">
+                            <span>關注</span>
+                        </button>
+                        <div id="ignore-and-moreinfo" class="ignore-and-moreinfo">
+                            <button id="icon_ignore" type="button" class="btn btn-secondary wish-list"
+                                style="display: inline-block;">
+                                <span>忽略</span>
+                            </button>
+                            <button id="icon_moreinfo" type="button" class="btn btn-secondary wish-list"
+                                style="display: inline-block;">
+                                <span><img src="./btn_arrow_down_padded.png" alt=""></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- sm購買選擇 -->
+                <!-- lg md-d-none -->
+                <div class="for-larger-500-none for-larger-910-none">
+                    <div class="game_area_purchase_game_wrapper ">
+                        <div class="game_area_purchase_game" id="game_area_purchase_section_add_to_cart_1053450">
+                            <div class="purchase-top">
+                                <div class="purchase-title">
+                                    <h1>預購 黑神話：悟空</h1>
+                                </div>
+                                <div class="game_area_purchase_platform">
+                                    <span class="platform_img win"><img src="./icon_platform_win.png" alt=""></span>
+                                </div>
+                            </div>
+                            <div class="game_purchase_action">
+                                <div class="game_purchase_action_bg">
+                                    <div class="game_purchase_price price">
+                                        NT$ 1,280
+                                    </div>
+
+                                    <div class="btn_addtocart">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#shopping_Modal">
+                                            <span>加入購物車</span>
+                                        </button>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sm折扣後 -->
+                <div class="for-larger-500-none for-larger-910-none">
+                    <div class="game_area_purchase_game_wrapper ">
+                        <div class="game_area_purchase_game" id="game_area_purchase_section_add_to_cart_1053450">
+                            <div class="purchase-top">
+                                <div class="purchase-title">
+                                    <h1>預購 黑神話：悟空</h1>
+                                </div>
+                                <div class="game_area_purchase_platform">
+                                    <span class="platform_img win"><img src="./icon_platform_win.png" alt=""></span>
+                                </div>
+                            </div>
+                            <div class="game_purchase_action">
+                                <div class="game_purchase_action_bg">
+                                    <div>
+                                        <span class="game-card-price-discount">-99%</span>
+                                    </div>
+                                    
+                                    <div class="game_purchase_price price discount_bgc">
+                                        <div class="original_price">
+                                            <span>NT$ 1,600</span>
+                                        </div>
+                                        <div class="discount_price">
+                                            <span>NT$ 1,280</span>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="btn_addtocart">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#shopping_Modal">
+                                            <span>加入購物車</span>
+                                        </button>
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 頁面內容 -->
+                <div class="page_content" data-panel="[]">
+                    <!-- Right Column -->
+                    <div
+                        class="rightcol game_meta_data md-func-language lg-func-language lg-rightcol mlg-func-language">
+                        <!-- 功能 -->
+                        <div id="responsive_apppage_details_left_ctn">
+                            <!-- 功能 -->
+                            <div class="feature-contain">
+                                <div
+                                    class="responsive_block_header responsive_apppage_details_left create-bottom-border for-larger-910-none">
+                                    功能
+                                </div>
+                                <div class="block responsive_apppage_details_left" id="category_block">
+                                    <!-- <div class="game_area_features_list_ctn">
+                                        <div class="all-feature">
+                                            <div class="feature-icon">
+                                                <img class="category_icon" src="./ico_singlePlayer.png" alt="">
+                                            </div>
+                                            <div class="feature-item">
+                                                <label class="feature-label">
+                                                    單人
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="all-feature">
+                                            <div class="feature-icon">
+                                                <img class="category_icon" src="./ico_achievements.png" alt="">
+                                            </div>
+                                            <div class="feature-item">
+                                                <label class="feature-label">
+                                                    Stellar 成就
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="all-feature">
+                                            <div class="feature-icon">
+                                                <img class="category_icon" src="./ico_cloud.png" alt="">
+                                            </div>
+                                            <div class="feature-item">
+                                                <label class="feature-label">
+                                                    Stellar 雲端
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="game_area_features_list_ctn">
+                                        <a class="all-feature">
+                                            <div class="feature-icon">
+                                                <img class="category_icon" src="./ico_singlePlayer.png" alt="">
+                                            </div>
+                                            <div class="feature-item">
+                                                <label class="feature-label">
+                                                    單人
+                                                </label>
+                                            </div>
+                                        </a>
+                                        <a class="all-feature">
+                                            <div class="feature-icon">
+                                                <img class="category_icon" src="./ico_achievements.png" alt="">
+                                            </div>
+                                            <div class="feature-item">
+                                                <label class="feature-label">
+                                                    Stellar 成就
+                                                </label>
+                                            </div>
+                                        </a>
+                                        <a class="all-feature">
+                                            <div class="feature-icon">
+                                                <img class="category_icon" src="./ico_cloud.png" alt="">
+                                            </div>
+                                            <div class="feature-item">
+                                                <label class="feature-label">
+                                                    Stellar 雲端
+                                                </label>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 控制器 -->
+                            <div class="controller-contain">
+                                <div class="responsive_block_header responsive_apppage_details_left">
+                                    完整控制器支援
+                                </div>
+                                <div class="block responsive_apppage_details_left" id="category_block">
+                                    <div class="game_area_features_list_ctn">
+                                        <div class="all-feature">
+                                            <div class="feature-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"
+                                                    class="_1LWvkVSCiVeG4Yf5uxtQ28">
+                                                    <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M11.25 5.625C11.909 5.625 12.182 5.81802 12.4081 5.97792C12.568 6.09099 12.7045 6.1875 12.9375 6.1875H23.0625C23.2955 6.1875 23.432 6.09099 23.5919 5.97792C23.818 5.81802 24.091 5.625 24.75 5.625C25.875 5.625 29.25 6.75 29.8125 7.3125C30.375 7.875 30.375 8.4375 30.375 8.4375V8.5803C30.8163 8.91923 31.1986 9.26106 31.5 9.5625C32.625 10.6875 36 20.25 36 25.3125C36 30.375 32.625 30.9375 32.625 30.9375C31.7178 30.9375 30.323 29.1494 28.9649 27.4083C27.7966 25.9106 26.6553 24.4476 25.875 24.1875C24.1875 23.625 11.8125 23.625 10.125 24.1875C9.34465 24.4476 8.20344 25.9106 7.03512 27.4083C5.67696 29.1494 4.28215 30.9375 3.375 30.9375C3.375 30.9375 0 30.375 0 25.3125C0 20.25 3.375 10.6875 4.5 9.5625C4.80144 9.26106 5.18366 8.91923 5.625 8.5803V8.4375C5.625 8.4375 5.625 7.875 6.1875 7.3125C6.75 6.75 10.125 5.625 11.25 5.625ZM27.5625 8.71875C28.3392 8.71875 28.9688 9.34835 28.9688 10.125C28.9688 10.9017 28.3392 11.5312 27.5625 11.5312C26.7858 11.5312 26.1562 10.9017 26.1562 10.125C26.1562 9.34835 26.7858 8.71875 27.5625 8.71875ZM8.4375 14.625C9.68014 14.625 10.6875 13.6176 10.6875 12.375C10.6875 11.1324 9.68014 10.125 8.4375 10.125C7.19486 10.125 6.1875 11.1324 6.1875 12.375C6.1875 13.6176 7.19486 14.625 8.4375 14.625ZM23.0625 20.25C24.3051 20.25 25.3125 19.2426 25.3125 18C25.3125 16.7574 24.3051 15.75 23.0625 15.75C21.8199 15.75 20.8125 16.7574 20.8125 18C20.8125 19.2426 21.8199 20.25 23.0625 20.25ZM12.0938 17.1562V16.3125C12.0938 16.0018 12.3456 15.75 12.6562 15.75H13.7812C14.0919 15.75 14.3438 16.0018 14.3438 16.3125V17.1562H15.1875C15.4982 17.1562 15.75 17.4081 15.75 17.7188V18.8438C15.75 19.1544 15.4982 19.4062 15.1875 19.4062H14.3438V20.25C14.3438 20.5607 14.0919 20.8125 13.7812 20.8125H12.6562C12.3456 20.8125 12.0938 20.5607 12.0938 20.25V19.4062H11.25C10.9393 19.4062 10.6875 19.1544 10.6875 18.8438V17.7188C10.6875 17.4081 10.9393 17.1562 11.25 17.1562H12.0938ZM25.0312 14.0625C25.8079 14.0625 26.4375 13.4329 26.4375 12.6562C26.4375 11.8796 25.8079 11.25 25.0312 11.25C24.2546 11.25 23.625 11.8796 23.625 12.6562C23.625 13.4329 24.2546 14.0625 25.0312 14.0625ZM31.5 12.6562C31.5 13.4329 30.8704 14.0625 30.0938 14.0625C29.3171 14.0625 28.6875 13.4329 28.6875 12.6562C28.6875 11.8796 29.3171 11.25 30.0938 11.25C30.8704 11.25 31.5 11.8796 31.5 12.6562ZM28.9688 15.1875C28.9688 14.4108 28.3392 13.7812 27.5625 13.7812C26.7858 13.7812 26.1562 14.4108 26.1562 15.1875C26.1562 15.9642 26.7858 16.5938 27.5625 16.5938C28.3392 16.5938 28.9688 15.9642 28.9688 15.1875Z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <a class="feature-item">
+                                                <label class="feature-label controller-green">
+                                                    您的 Xbox 控制器
+                                                </label>
+                                            </a>
+                                        </div>
+                                        <div class="all-feature">
+                                            <div class="feature-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" fill="none"
+                                                    class="_1LWvkVSCiVeG4Yf5uxtQ28">
+                                                    <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M4.5 8.77962V8.17604C4.5 7.98797 4.59324 7.8129 4.75606 7.71875C5.29052 7.40971 6.58276 6.75 7.875 6.75C9.5625 6.75 9.5625 7.3125 9.5625 7.3125V7.79346C9.92732 7.74841 10.3079 7.7053 10.7038 7.66469L10.7001 7.66881C10.4768 7.91891 10.3639 8.22982 10.4289 8.58762L11.114 12.3555C11.3614 13.7163 10.9231 15.1154 9.99052 16.155C8.88458 17.3878 7.44481 19.1078 6.50883 20.6678C5.85918 21.7505 5.21964 23.4605 4.67636 25.1549C4.13086 26.8562 3.67463 28.5672 3.3961 29.6673C3.27268 30.1547 2.76181 30.4366 2.2902 30.2794L2.14425 30.2308C1.59878 29.9208 1.15999 29.4611 0.929107 28.8508C0.480791 27.6656 0 25.7647 0 23.0625C0 18 2.8125 9.5625 3.9375 9C4.07055 8.93348 4.25867 8.85908 4.5 8.77962ZM5.625 11.25C5.625 10.9393 5.87684 10.6875 6.1875 10.6875H7.3125C7.62316 10.6875 7.875 10.9393 7.875 11.25V12.142C7.875 12.2912 7.81574 12.4343 7.71025 12.5398L7.14775 13.1023C6.92808 13.3219 6.57192 13.3219 6.35225 13.1023L5.78975 12.5398C5.68426 12.4343 5.625 12.2912 5.625 12.142V11.25ZM5.625 16.3125C5.625 16.6232 5.87684 16.875 6.1875 16.875H7.3125C7.62316 16.875 7.875 16.6232 7.875 16.3125V15.4205C7.875 15.2713 7.81574 15.1282 7.71025 15.0227L7.14775 14.4602C6.92808 14.2406 6.57192 14.2406 6.35225 14.4602L5.78975 15.0227C5.68426 15.1282 5.625 15.2713 5.625 15.4205V16.3125ZM9.84375 14.3438C9.84375 14.6544 9.59191 14.9062 9.28125 14.9062H8.38924C8.24006 14.9062 8.09699 14.847 7.9915 14.7415L7.429 14.179C7.20933 13.9593 7.20933 13.6032 7.429 13.3835L7.9915 12.821C8.09699 12.7155 8.24006 12.6562 8.38925 12.6562H9.28125C9.59191 12.6562 9.84375 12.9081 9.84375 13.2188V14.3438ZM4.21875 14.9062C3.90809 14.9062 3.65625 14.6544 3.65625 14.3438V13.2188C3.65625 12.9081 3.90809 12.6562 4.21875 12.6562H5.11076C5.25994 12.6562 5.40301 12.7155 5.5085 12.821L6.071 13.3835C6.29067 13.6032 6.29067 13.9593 6.071 14.179L5.5085 14.7415C5.40301 14.847 5.25994 14.9062 5.11076 14.9062H4.21875ZM9.0297 9.05937C9.30756 8.92044 9.64544 9.03307 9.78437 9.31093L10.0656 9.87343C10.2046 10.1513 10.0919 10.4892 9.81406 10.6281C9.5362 10.767 9.19832 10.6544 9.05939 10.3765L8.77814 9.81404C8.63921 9.53618 8.75183 9.1983 9.0297 9.05937Z">
+                                                    </path>
+                                                    <path fill="currentColor"
+                                                        d="M18 7.3125C15.7603 7.3125 13.748 7.4035 11.9892 7.54668C11.9209 7.57082 11.8551 7.59586 11.7919 7.62185C11.4768 7.75142 11.2526 7.89452 11.1197 8.04343C10.9961 8.18189 10.9523 8.32182 10.9824 8.48699L11.5138 11.4097L12.1573 13.5129C12.4103 14.3408 13.1744 14.9062 14.0401 14.9062H21.9642C22.8281 14.9062 23.591 14.3431 23.8456 13.5176L24.4729 11.483L25.0176 8.48699C25.0463 8.32909 25.0039 8.1935 24.8798 8.05684C24.7463 7.90988 24.5214 7.76808 24.2057 7.6392C24.1215 7.60486 24.0327 7.57213 23.9398 7.54094C22.1978 7.40107 20.2096 7.3125 18 7.3125Z">
+                                                    </path>
+                                                    <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M3.37124 30.6556L3.34019 30.6503C3.62833 30.4606 3.84996 30.1665 3.94139 29.8054C4.2185 28.7109 4.67149 27.0124 5.212 25.3266C5.75474 23.6339 6.37801 21.9791 6.99117 20.9572C7.89825 19.4454 9.30802 17.7581 10.4092 16.5306C11.085 15.7773 11.5326 14.8493 11.6859 13.8677C12.0647 14.8275 12.9948 15.4687 14.0401 15.4687H21.9642C23.0065 15.4687 23.9345 14.8312 24.3153 13.8755C24.4698 14.8543 24.9168 15.7794 25.5908 16.5306C26.692 17.7581 28.1017 19.4454 29.0088 20.9572C29.622 21.9791 30.2453 23.6339 30.788 25.3266C31.3285 27.0124 31.7815 28.7109 32.0586 29.8054C32.15 30.1664 32.3717 30.4606 32.6598 30.6503L32.6288 30.6556C31.6413 30.8202 30.6725 30.275 30.3007 29.3455L28.4111 24.6216C27.8986 23.3402 26.6576 22.5 25.2775 22.5H10.7225C9.34243 22.5 8.10142 23.3402 7.58888 24.6216L5.69928 29.3455C5.3275 30.275 4.35868 30.8202 3.37124 30.6556ZM25.875 19.125C25.875 20.3676 24.8676 21.375 23.625 21.375C22.3824 21.375 21.375 20.3676 21.375 19.125C21.375 17.8824 22.3824 16.875 23.625 16.875C24.8676 16.875 25.875 17.8824 25.875 19.125ZM12.375 21.375C13.6176 21.375 14.625 20.3676 14.625 19.125C14.625 17.8824 13.6176 16.875 12.375 16.875C11.1324 16.875 10.125 17.8824 10.125 19.125C10.125 20.3676 11.1324 21.375 12.375 21.375Z">
+                                                    </path>
+                                                    <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M33.7098 30.2794L33.8557 30.2308C34.4012 29.9208 34.84 29.4611 35.0709 28.8508C35.5192 27.6656 36 25.7647 36 23.0625C36 18 33.1875 9.5625 32.0625 9C31.9295 8.93348 31.7413 8.85908 31.5 8.77962V8.17604C31.5 7.98797 31.4068 7.8129 31.2439 7.71875C30.7095 7.40971 29.4172 6.75 28.125 6.75C26.4375 6.75 26.4375 7.3125 26.4375 7.3125V7.79346C26.0683 7.74787 25.683 7.70427 25.282 7.66324L25.2962 7.67864C25.52 7.92502 25.6356 8.23268 25.5711 8.58762L25.0274 11.5776L25.0319 11.579L25.0203 11.6166L24.886 12.3555C24.6386 13.7163 25.0769 15.1154 26.0095 16.155C27.1154 17.3878 28.5552 19.1078 29.4912 20.6678C30.1408 21.7505 30.7804 23.4605 31.3236 25.1549C31.8691 26.8562 32.3254 28.5672 32.6039 29.6673C32.7273 30.1547 33.2382 30.4366 33.7098 30.2794ZM26.2156 9.31093C26.3546 9.03307 26.6924 8.92044 26.9703 9.05937C27.2482 9.1983 27.3608 9.53618 27.2219 9.81404L26.9406 10.3765C26.8017 10.6544 26.4638 10.767 26.1859 10.6281C25.9081 10.4892 25.7954 10.1513 25.9344 9.87343L26.2156 9.31093ZM30.375 15.75C30.375 16.3713 29.8713 16.875 29.25 16.875C28.6287 16.875 28.125 16.3713 28.125 15.75C28.125 15.1287 28.6287 14.625 29.25 14.625C29.8713 14.625 30.375 15.1287 30.375 15.75ZM31.5 14.625C32.1213 14.625 32.625 14.1213 32.625 13.5C32.625 12.8787 32.1213 12.375 31.5 12.375C30.8787 12.375 30.375 12.8787 30.375 13.5C30.375 14.1213 30.8787 14.625 31.5 14.625ZM30.375 11.25C30.375 11.8713 29.8713 12.375 29.25 12.375C28.6287 12.375 28.125 11.8713 28.125 11.25C28.125 10.6287 28.6287 10.125 29.25 10.125C29.8713 10.125 30.375 10.6287 30.375 11.25ZM27 14.625C27.6213 14.625 28.125 14.1213 28.125 13.5C28.125 12.8787 27.6213 12.375 27 12.375C26.3787 12.375 25.875 12.8787 25.875 13.5C25.875 14.1213 26.3787 14.625 27 14.625Z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <a class="feature-item">
+                                                <label class="feature-label controller-green">
+                                                    您的 DualSense 控制器
+                                                </label>
+                                            </a>
+                                        </div>
+                                        <div class="all-feature" id="controller-introduce">
+                                            <div class="feature-icon opacity_background_color">
+                                                <svg class="category_icon" width="20" height="20" viewBox="6 6 20 20"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                    class="_3UK9OHyZ3r9rA55mgsnZPD">
+                                                    <path
+                                                        d="M16.9511 6.69098L16 3.76393L15.0489 6.69098L13.0283 12.9098H6.48944H3.41175L5.90165 14.7188L11.1917 18.5623L9.17109 24.7812L8.22003 27.7082L10.7099 25.8992L16 22.0557L21.2901 25.8992L23.78 27.7082L22.8289 24.7812L20.8083 18.5623L26.0984 14.7188L28.5882 12.9098H25.5106H18.9717L16.9511 6.69098Z"
+                                                        fill="white" stroke="#141E2B" stroke-width="2"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="feature-item">
+                                                <label class="controller-intro-text">
+                                                    開發者推薦使用控制器遊玩此遊戲
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 分享崁入 -->
+                            <div
+                                class="share-import-report-area for-lower-500-none for-larger-500-block for-larger-910-none md-share-for-flex">
+                                <div id="add_to_wishlist_area" class="md-share">
+                                    <button type="button" class="btn btn-secondary wish-list"
+                                        style="display: inline-block;">
+                                        <span>分享</span>
+                                    </button>
+                                </div>
+                                <div id="add_to_wishlist_area" class="md-import">
+                                    <button type="button" class="btn btn-secondary wish-list"
+                                        style="display: inline-block;">
+                                        <span>崁入</span>
+                                    </button>
+                                </div>
+                                <div id="add_to_wishlist_area" class="md-report">
+                                    <button type="button" class="btn btn-secondary wish-list"
+                                        style="display: inline-block;">
+                                        <span><img src="icon_report.svg" alt=""></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 第三方 -->
+                            <!-- <div class="DRM_notice">
+                                第三方 DRM: Denuvo
+                            </div> -->
+                            <!-- 已擁有此遊戲的好友 -->
+                            <div class="friend-who-have">
+                                <div class="friend-have-text">
+                                    <span>4位好友</span>
+                                    <span>已擁有此遊戲</span>
+                                </div>
+                                <div class="friend-have-list">
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./friend_img1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 語言 -->
+                        <div class="block responsive_apppage_details_right lg-language">
+                            <div class="responsive_block_header responsive_apppage_details_left create-bottom-border">
+                                語言
+                            </div>
+
+                            <div class="language-spread-btn for-larger-500-none">
+                                <div class="language-text">
+                                    <button class="btn btn-primary language-text-btn" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseWidthExample"
+                                        aria-expanded="false" aria-controls="collapseWidthExample">
+                                        繁體中文和其它 11 種語言
+                                        <div class="language-plus">
+                                            +
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 語言表格 -->
+                            <div id="langauge_grid" style="min-height: 100%;">
+                                <!-- show要記得拿掉，之後用JS寫-->
+                                <div class="collapse show collapse-horizontal" id="collapseWidthExample">
+                                    <div class="card card-body lg-pd-control" style="width: 100%;">
+                                        <div class="container language-grid">
+                                            <div class="row">
+                                                <div class="col-3 grid-w33"></div>
+                                                <div class="col-3 grid-w22">介面</div>
+                                                <div class="col-3 grid-w22">完整語音</div>
+                                                <div class="col-3 grid-w22">字幕</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">繁體中文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">英文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">法文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">德文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">西班牙文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">日文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">韓文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">波蘭文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">葡萄牙文 - 巴西</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">俄文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">簡體中文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3 grid-w33">義大利文</div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                                <div class="col-3 grid-w22"></div>
+                                                <div class="col-3 grid-w22"><span>✓</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- lg分享崁入 -->
+                        <div class="share-import-report-area for-lower-500-none">
+                            <div id="add_to_wishlist_area" class="md-share">
+                                <button type="button" class="btn btn-secondary wish-list"
+                                    style="display: inline-block;">
+                                    <span>分享</span>
+                                </button>
+                            </div>
+                            <div id="add_to_wishlist_area" class="md-import">
+                                <button type="button" class="btn btn-secondary wish-list"
+                                    style="display: inline-block;">
+                                    <span>崁入</span>
+                                </button>
+                            </div>
+                            <div id="add_to_wishlist_area" class="md-report">
+                                <button type="button" class="btn btn-secondary wish-list"
+                                    style="display: inline-block;">
+                                    <span><img src="icon_report.svg" alt=""></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- md購買選擇 -->
+                    <!-- lg d-none -->
+                    <div class="for-larger-500-block for-lower-500-none md-purchase_options_content for-larger-910-none">
+                        <div class="game_area_purchase_game_wrapper">
+                            <div class="game_area_purchase_game" id="game_area_purchase_section_add_to_cart_1053450">
+                                <!-- <form name="add_to_cart_1053450" action="https://store.steampowered.com/cart/" method="POST">
+                                <input type="hidden" name="snr" value="1_5_9__403">
+                                <input type="hidden" name="originating_snr" value="1_store-navigation__">
+                                <input type="hidden" name="action" value="add_to_cart">
+                                <input type="hidden" name="sessionid" value="65540bfad6a8275cfdfe02a6">
+                                <input type="hidden" name="subid" value="1053450">
+                            </form> -->
+                                <div class="purchase-top">
+                                    <div class="purchase-title">
+                                        <h1>預購 黑神話：悟空</h1>
+                                    </div>
+                                    <div class="game_area_purchase_platform">
+                                        <span class="platform_img win"><img src="./icon_platform_win.png" alt=""></span>
+                                    </div>
+                                </div>
+                                <div class="game_purchase_action">
+                                    <div class="game_purchase_action_bg">
+                                        <div class="game_purchase_price price">
+                                            NT$ 1,280
+                                        </div>
+                                        <div class="btn_addtocart">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#shopping_Modal">
+                                                <span>加入購物車</span>
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <!-- <div class="modal fade" id="shopping_Modal" tabindex="-1" aria-labelledby="shopping_ModalLabel" aria-hidden="true">
+                                                <section class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content game-card">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="modal-header">
+                                                            <h2>已加入您的購物車</h2>
+                                                        </div>
+                                                        <div class="game-card-">
+                                                            <a href="../Storm(ProductPage)/EachProductPage_v3.html" class="game-card-img">
+                                                                <img src="./tab2_img_1.jpg" alt="">
+                                                            </a>
+                                                            <div class="game-card-content">
+                                                                <h3>Revue Starlight El Dorado</h3>
+                                                                <div class="game-card-price-field">
+                                                                    <span class="game-card-price-discount">七夕-77%</span>
+                                                                    <span>
+                                                                        <div class="game-card-price-cut">
+                                                                            <span>NT$&nbsp;</span>
+                                                                            <span>3378.00</span>
+                                                                        </div>
+                                                                        <div class="game-card-price">
+                                                                            <span>NT$&nbsp;</span>
+                                                                            <span>777.00</span>
+                                                                        </div>
+                                                                    </span>
+                                                                </div>
+                                                                <span class="d-flex justify-content-between mt-2">
+                                                                    <select class="form-select-sm">
+                                                                        <option value="user" selected>自己帳戶使用</option>
+                                                                        <option value="gift">這是份禮物</option>
+                                                                    </select>
+                                                                    <span>
+                                                                        <span class="game-card-new border-end pe-2">新增</span>
+                                                                        <span class="game-card-remove ps-1">移除</span>
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續購物</button>
+                                                            <a href="../shopping-cart/shopping-cart.html" type="button" class="btn btn-primary">檢視我的購物車</a>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div> -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="for-larger-500-block for-lower-500-none md-purchase_options_content for-larger-910-none">
+                        <div class="game_area_purchase_game_wrapper">
+                            <div class="game_area_purchase_game" id="game_area_purchase_section_add_to_cart_1053450">
+                                <!-- <form name="add_to_cart_1053450" action="https://store.steampowered.com/cart/" method="POST">
+                                <input type="hidden" name="snr" value="1_5_9__403">
+                                <input type="hidden" name="originating_snr" value="1_store-navigation__">
+                                <input type="hidden" name="action" value="add_to_cart">
+                                <input type="hidden" name="sessionid" value="65540bfad6a8275cfdfe02a6">
+                                <input type="hidden" name="subid" value="1053450">
+                            </form> -->
+                                <div class="purchase-top">
+                                    <div class="purchase-title">
+                                        <h1>預購 黑神話：悟空</h1>
+                                    </div>
+                                    <div class="game_area_purchase_platform">
+                                        <span class="platform_img win"><img src="./icon_platform_win.png" alt=""></span>
+                                    </div>
+                                </div>
+                                <div class="game_purchase_action">
+                                    <div class="game_purchase_action_bg">
+                                        <div>
+                                            <span class="game-card-price-discount">-99%</span>
+                                        </div>
+                                        
+                                        <div class="game_purchase_price price discount_bgc">
+                                            <div class="original_price">
+                                                <span>NT$ 1,600</span>
+                                            </div>
+                                            <div class="discount_price">
+                                                <span>NT$ 1,280</span>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="btn_addtocart">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#shopping_Modal">
+                                                <span>加入購物車</span>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Left Column -->
+                    <div class="leftcol game_description_column lg-leftcol">
+                        <!-- lg購買選擇 -->
+                        <div class="for-larger-910-block for-lower-500-none md-purchase_options_content">
+                            <div class="game_area_purchase_game_wrapper">
+                                <div class="game_area_purchase_game"
+                                    id="game_area_purchase_section_add_to_cart_1053450">
+                                    <!-- <form name="add_to_cart_1053450" action="https://store.steampowered.com/cart/" method="POST">
+                                    <input type="hidden" name="snr" value="1_5_9__403">
+                                    <input type="hidden" name="originating_snr" value="1_store-navigation__">
+                                    <input type="hidden" name="action" value="add_to_cart">
+                                    <input type="hidden" name="sessionid" value="65540bfad6a8275cfdfe02a6">
+                                    <input type="hidden" name="subid" value="1053450">
+                                </form> -->
+                                    <div class="purchase-top">
+                                        <div class="purchase-title">
+                                            <h1>預購 黑神話：悟空</h1>
+                                        </div>
+                                        <div class="game_area_purchase_platform">
+                                            <span class="platform_img win"><img src="./icon_platform_win.png"
+                                                    alt=""></span>
+                                        </div>
+                                    </div>
+                                    <div class="game_purchase_action">
+                                        <div class="game_purchase_action_bg">
+                                            <div class="game_purchase_price price">
+                                                NT$ 1,280
+                                            </div>
+                                            <div class="btn_addtocart">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#shopping_Modal">
+                                                    <span>加入購物車</span>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- 折購後的 -->
+                        <div class="for-larger-910-block for-lower-500-none md-purchase_options_content">
+                            <div class="game_area_purchase_game_wrapper">
+                                <div class="game_area_purchase_game"
+                                    id="game_area_purchase_section_add_to_cart_1053450">
+                                    <!-- <form name="add_to_cart_1053450" action="https://store.steampowered.com/cart/" method="POST">
+                                    <input type="hidden" name="snr" value="1_5_9__403">
+                                    <input type="hidden" name="originating_snr" value="1_store-navigation__">
+                                    <input type="hidden" name="action" value="add_to_cart">
+                                    <input type="hidden" name="sessionid" value="65540bfad6a8275cfdfe02a6">
+                                    <input type="hidden" name="subid" value="1053450">
+                                </form> -->
+                                    <div class="purchase-top">
+                                        <div class="purchase-title">
+                                            <h1>預購 黑神話：悟空</h1>
+                                        </div>
+                                        <div class="game_area_purchase_platform">
+                                            <span class="platform_img win"><img src="./icon_platform_win.png"
+                                                    alt=""></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="game_purchase_action">
+                                        <div class="game_purchase_action_bg">
+                                            <div>
+                                                <span class="game-card-price-discount">-99%</span>
+                                            </div>
+                                            
+                                            <div class="game_purchase_price price discount_bgc">
+                                                <div class="original_price">
+                                                    <span>NT$ 1,600</span>
+                                                </div>
+                                                <div class="discount_price">
+                                                    <span>NT$ 1,280</span>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="btn_addtocart">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#shopping_Modal">
+                                                    <span>加入購物車</span>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 近期活動 -->
+                        <div class="events">
+                            <div class="description-title create-bottom-border">
+                                <div class="responsive_block_header responsive_apppage_details_left ">
+                                    近期活動和公告
+                                </div>
+                                <div class="view-all-btn">
+                                    <a>檢視全部</a>
+                                </div>
+                            </div>
+                            <div class="announce-card-list">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="each-card">
+                                            <div class="card text-bg-dark">
+                                                <img src="./events_card1.png" class="card-img" alt="...">
+                                                <div class="card-img-overlay">
+                                                    <h5 class="card-title">新聞</h5>
+                                                    <p class="card-text">遊戲定於北京時間2024年8月20日登陸 Windows PC / PlayStation5
+                                                        平台，現在預購即可獲得特別獎勵「爭先紅葫蘆」。</p>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">《黑神話：悟空》現已開啟預購</h5>
+                                                <p class="card-text md-announce-text">
+                                                    <small
+                                                        class="text-body-secondary for-lower-500-none for-larger-500-block">
+                                                        預購即可獲得特別獎勵「爭先紅葫蘆」
+                                                    </small>
+                                                    <small class="text-body-secondary ">
+                                                        2024年6月8日 週六
+                                                    </small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="each-card">
+                                            <div class="card text-bg-dark">
+                                                <img src="./events_card2.png" class="card-img" alt="...">
+                                                <div class="card-img-overlay">
+                                                    <h5 class="card-title">新聞</h5>
+                                                    <p class="card-text">GTX 1060 / RX 580即可開啟西行之旅</p>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">PC配置需求說明</h5>
+                                                <p class="card-text md-announce-text">
+                                                    <small
+                                                        class="text-body-secondary for-lower-500-none for-larger-500-block">
+                                                        GTX 1060 / RX 580即可開啟西行之旅
+                                                    </small>
+                                                    <small class="text-body-secondary">
+                                                        2024年6月8日 週六
+                                                    </small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 關於此遊戲 -->
+                        <div class="game-area-description">
+                            <div class="responsive_block_header responsive_apppage_details_left create-bottom-border">
+                                關於此遊戲
+                            </div>
+                            <div class="about-text">
+                                <p>
+                                    《黑神話：悟空》是一款以中國神話為背景的動作角色扮演遊戲。故事取材自中國古典小說「四大名著」之一的《西遊記》。玩家將扮演一位「天命人」，為了找尋昔日傳奇的真相，踏上充滿危險與驚奇的西遊之路。
+                                </p>
+                            </div>
+                            <div class="about-card-list">
+                                <div class="card">
+                                    <img src="./about_img1.gif" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">• 奇偉壯麗，光怪陸離</h5>
+                                        <p class="card-text">
+                                            別有世間曾未見，一行一步一花新。歡迎來到亦真亦幻的東方魔幻世界！天命人將前往引人入勝又風格迥異的多個西遊故地，再次譜寫前所未見的冒險史詩。</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img src="./about_img2.gif" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">• 妖魔鬼怪，捲土重來</h5>
+                                        <p class="card-text">
+                                            行者名聲大，魔王手段強。《西遊記》的一大看點正是各有所長的厲害妖怪。在冒險途中，天命人將遭遇許多強敵與可敬的對手，與其豪氣一戰，至死方休。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 系統需求 -->
+                        <div class="system-request">
+                            <div class="responsive_block_header responsive_apppage_details_left create-bottom-border">
+                                系統需求
+                            </div>
+                            <div class="sysreq_contents">
+                                <div class="game_area_sys_req sysreq_content active" data-os="win">
+                                    <div class="game_area_sys_req_leftCol">
+                                        <ul class="cancel-padding">
+                                            <strong class="small-text">最低配備:</strong><br>
+                                            <ul class="bb_ul">
+                                                <li>需要 64 位元的處理器及作業系統<br></li>
+                                                <li><strong>作業系統:</strong> Windows 10 64-bit<br></li>
+                                                <li><strong>處理器:</strong> Intel Core i5-8400 / AMD Ryzen 5 1600<br></li>
+                                                <li><strong>記憶體:</strong> 16 GB 記憶體<br></li>
+                                                <li><strong>顯示卡:</strong> NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX
+                                                    580
+                                                    8GB<br></li>
+                                                <li><strong>DirectX:</strong> 版本：11<br></li>
+                                                <li><strong>儲存空間:</strong> 130 GB 可用空間<br></li>
+                                                <li><strong>音效卡:</strong> Windows Compatible Audio Device<br></li>
+                                                <li><strong>備註:</strong> HDD Supported, SSD Recommended. The above
+                                                    specifications were tested with DLSS/FSR/XeSS enabled.</li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div class="game_area_sys_req_rightCol">
+                                        <ul class="cancel-padding">
+                                            <strong class="small-text">建議配備:</strong><br>
+                                            <ul class="bb_ul">
+                                                <li>需要 64 位元的處理器及作業系統<br></li>
+                                                <li><strong>作業系統:</strong> Windows 10 64-bit<br></li>
+                                                <li><strong>處理器:</strong> Intel Core i7-9700 / AMD Ryzen 5 5500<br></li>
+                                                <li><strong>記憶體:</strong> 16 GB 記憶體<br></li>
+                                                <li><strong>顯示卡:</strong> NVIDIA GeForce RTX 2060 / AMD Radeon RX 5700
+                                                    XT /
+                                                    INTEL Arc A750<br></li>
+                                                <li><strong>DirectX:</strong> 版本：12<br></li>
+                                                <li><strong>儲存空間:</strong> 130 GB 可用空間<br></li>
+                                                <li><strong>音效卡:</strong> Windows Compatible Audio Device<br></li>
+                                                <li><strong>備註:</strong> SSD Required. The above specifications were
+                                                    tested
+                                                    with
+                                                    DLSS/FSR/XeSS enabled.</li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 更多相似的產品 -->
+                        <div class="more-similar-products">
+                            <div class="more-similar-products-title">
+                                <div
+                                    class="responsive_block_header responsive_apppage_details_left create-bottom-border">
+                                    更多相似產品
+                                </div>
+                                <div class="view-more-product-btn">
+                                    <a>查看全部</a>
+                                </div>
+                            </div>
+                            <div class="similar-products-container  md-similar-products-container">
+                                <div class="row similar-products-row">
+                                    <!-- <div class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img1.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">God of War</h5>
+                                                <p class="card-text">NT$ 1,190</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img2.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">《Ghost of Tsushima導演剪輯版》</h5>
+                                                <p class="card-text">NT$ 1,490</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img3.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Hades II</h5>
+                                                <p class="card-text">NT$ 488</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img4.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Lies of P</h5>
+                                                <p class="card-text">NT$ 1,290</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img5.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">九日</h5>
+                                                <p class="card-text">NT$ 650</p>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <a class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img1.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">God of War</h5>
+                                                <p class="card-text">NT$ 1,190</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img2.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">《Ghost of Tsushima導演剪輯版》</h5>
+                                                <p class="card-text">NT$ 1,490</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img3.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Hades II</h5>
+                                                <p class="card-text">NT$ 488</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img4.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Lies of P</h5>
+                                                <p class="card-text">NT$ 1,290</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="similar-products col">
+                                        <div class="card">
+                                            <img src="./more_pro_img5.jpg" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">九日</h5>
+                                                <p class="card-text">NT$ 650</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal1 -->
+        <div class="modal fade" id="shopping_Modal" tabindex="-1" aria-labelledby="shopping_ModalLabel"
+            aria-hidden="true">
+            <section class="modal-dialog modal-dialog-centered">
+                <div class="modal-content game-card">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header">
+                        <h2>已加入您的購物車</h2>
+                    </div>
+                    <div class="game-card-">
+                        <a href="../Storm(ProductPage)/EachProductPage_v3.html" class="game-card-img">
+                            <img src="./shoppingcar_model_Image1.jpg" alt="">
+                        </a>
+                        <div class="game-card-content">
+                            <h3>黑神話：悟空</h3>
+                            <div class="game-card-price-field">
+                                <span class="d-none game-card-price-discount">七夕-77%</span>
+                                <span>
+                                    <div class="d-none game-card-price-cut">
+                                        <span>NT$&nbsp;</span>
+                                        <span>3378.00</span>
+                                    </div>
+                                    <div class="game-card-price">
+                                        <span>NT$&nbsp;</span>
+                                        <span>1,280.00</span>
+                                    </div>
+                                </span>
+                            </div>
+                            <span class="d-flex justify-content-between mt-2">
+                                <select class="form-select-sm">
+                                    <option value="user" selected>自己帳戶使用</option>
+                                    <option value="gift">這是份禮物</option>
+                                </select>
+                                <span>
+                                    <span class="game-card-new border-end pe-2">新增</span>
+                                    <span class="game-card-remove ps-1">移除</span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續購物</button>
+                        <a href="../shopping-cart/shopping-cart.html" type="button" class="btn btn-primary">檢視我的購物車</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <hr>
+            <div class="privacy">
+
+                <div class="text">
+                    <p>© 版權所有?並沒有。純為教育使用，非商業用途，所有商標皆純屬虛構。</p>
+                    <p>貨物既出，恕不退貨</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">隱私權政策</a></li>
+                            <li class="breadcrumb-item"><a href="#">法律聲明</a></li>
+                            <li class="breadcrumb-item"><a href="#">Storm訂戶協議</a></li>
+                            <li class="breadcrumb-item"><a href="#">退款</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="logo">
+                    <img src="../img/logo_steam.png" alt="">
+                </div>
+            </div>
+            <hr>
+            <div class="footer-navbar">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="https://www.build-school.com/">關於storm</a></li>
+                        <li class="breadcrumb-item"><a href="https://rdrc.mnd.gov.tw/page/index">人才招募</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="../customer-service/customer_service_homepage/customer_service.html">客服中心</a></li>
+                        <li class="breadcrumb-item"><a href="#">storm發行</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../layout/layout.js"></script>
+
+    <script src="./EachProductPage_v3.js"></script>
+</body>
+
+</html>

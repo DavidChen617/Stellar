@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/layout/layout.css" />
+    <link rel="stylesheet" href="/commom/common.css" />
+    <!-- 整體佈局區塊 -->
+    <style>
+        #shelves {
+            width: 960px;
+            margin: auto;
+            padding: 50px 0;
+            color: white;
+        }
+
+        #shelves h2 {
+            font-size: 16px;
+            color: #ccc;
+            border-bottom: 2px solid rgba(146, 146, 146, 0.2);
+        }
+
+        #shelves .form_list .accordion-collapse {
+            padding: 15px;
+            color: #acb2b8;
+            font-size: 13px;
+        }
+    </style>
+    <!-- Accordion 區塊 -->
+    <style>
+        #shelves .accordion {
+            --bs-accordion-bg: none;
+        }
+
+        #shelves .accordion-item {
+            background-color: unset;
+            border: none;
+        }
+
+        #shelves .accordion-button {
+            color: white;
+        }
+
+        #shelves .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        #shelves .accordion-button:not(.collapsed) {
+            color: white;
+            background-color: unset;
+            box-shadow: none;
+        }
+
+        #shelves .accordion-button::after {
+            content: "+";
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            background-image: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            scale: 2;
+        }
+
+        #shelves .accordion-button.collapsed::after {
+            transform: rotate(0deg);
+        }
+
+        #shelves .accordion-button:not(.collapsed)::after {
+            content: "-";
+            background-image: none;
+            transform: none;
+            padding-bottom: 10px;
+            padding-left: 3px;
+            scale: 3;
+        }
+    </style>
+    <!-- 表單元素區塊 -->
+    <style>
+        #shelves label {
+            margin-bottom: 2px;
+        }
+
+        #shelves input,
+        #shelves textarea {
+            background-color: #0004;
+            border: none;
+            color: #acb2b8;
+        }
+
+        #shelves input {
+            height: 40px;
+            padding: 10px;
+        }
+
+        #shelves input:focus,
+        #shelves textarea:focus {
+            outline: none;
+        }
+
+        #shelves input::placeholder {
+            color: #919191;
+        }
+
+        #shelves textarea {
+            padding: 15px;
+        }
+
+        #shelves.placeholder-div::before {
+            content: attr(data-placeholder);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #aaa;
+            pointer-events: none;
+        }
+
+        #shelves .has-content::before {
+            display: none;
+        }
+    </style>
+    <!-- 類別選擇區塊 -->
+    <style>
+        #shelves .category-select {
+            position: relative;
+            width: 100%;
+            height: 40px;
+        }
+
+        #shelves #category-selected {
+            background-color: #0004;
+            padding: 10px;
+            color: #919191;
+        }
+
+        #shelves .category-select div {
+            background-color: #242424;
+            cursor: pointer;
+        }
+
+        #shelves .category-options {
+            display: none;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+        }
+
+        #shelves .category-options div {
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            height: 40px;
+        }
+
+        #shelves .category-options div:hover {
+            background-color: #ddd;
+        }
+    </style>
+    <!-- 搜尋與選項區塊 -->
+    <style>
+        #shelves .search-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        #shelves .search-container input {
+            width: calc(100% - 80px);
+            margin-bottom: 0;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        #shelves .search-container button {
+            width: 80px;
+            height: 40px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        #shelves #checkboxList {
+            height: 250px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #shelves #checkboxList label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #shelves #checkboxList label {
+            height: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        #shelves #checkboxList input {
+            margin: 0 10px 0 0;
+        }
+
+        #shelves #clearSelectedBtn {
+            display: none;
+            height: 25px;
+            position: absolute;
+            top: 80px;
+            right: 35px;
+        }
+    </style>
+    <!-- 遊戲標籤區塊 -->
+    <style>
+        #shelves #gameTags-options {
+            position: relative;
+            padding: 10px;
+            height: 40px;
+            background-color: #0004;
+        }
+
+        #shelves .tags-disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+    <!-- 圖片預覽與上傳區塊 -->
+    <style>
+        #shelves #imagePreview {
+            width: 320px;
+            aspect-ratio: 16 / 9;
+            margin-top: 20px;
+        }
+
+        #shelves .game-Main-Img {
+            width: 691px;
+        }
+
+        #shelves #media-preview {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #shelves .media-item {
+            position: relative;
+            cursor: move;
+        }
+
+        #shelves .sortable-ghost {
+            opacity: 0.4;
+            background-color: #ccc;
+        }
+    </style>
+    <!-- Modal 彈窗區塊 -->
+    <style>
+        #shelves .modal-content {
+            background: linear-gradient(to bottom, #214d6f 0%, #1a2a3c 400px);
+        }
+    </style>
+    <!-- 公告卡片區塊 -->
+    <style>
+        #shelves .each-card {
+            position: relative;
+            overflow: hidden;
+            width: 300px;
+        }
+
+        #shelves .each-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        #shelves .each-card:hover::before {
+            opacity: 1;
+        }
+
+        #shelves .each-card .card-img-overlay {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        #shelves .each-card:hover .card-img-overlay {
+            opacity: 1;
+        }
+
+        #shelves .card-title {
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        #shelves .card-text {
+            font-size: 14px;
+            color: #ccc;
+            margin: 8px 0;
+        }
+
+        #shelves .card-body {
+            padding: 5px 10px;
+        }
+
+        #shelves .card-body p .text-body-secondary {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        #shelves .md-announce-text {
+            margin-top: 4px;
+        }
+
+        #shelves .each-card button {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 2;
+        }
+    </style>
+    <!-- 其他樣式區塊 -->
+    <style>
+        #shelves .for-larger-500-block {
+            display: block;
+        }
+    </style>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="shelves">
+            <div class="accordion">
+                <form class="form_list accordion-item" action="">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseOne">產品上架</button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse /show">
+                        <div class="d-flex flex-column w-100 mb-4">
+                            <label for="gameName">遊戲名稱</label>
+                            <input type="text" id="gameName" placeholder="限制50字元" />
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <label for="gameCategory">遊戲類別</label>
+                                <div class="category-select">
+                                    <div id="category-selected">下拉選擇</div>
+                                    <div class="category-options" id="options">
+                                        <div onclick="selectOption('Option 1')">Option 1</div>
+                                        <div onclick="selectOption('Option 2')">Option 2</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('即時策略')">即時策略</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                        <div onclick="selectOption('Option 3')">Option 3</div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column my-4">
+                                    <label for="launchDate">發行日期</label>
+                                    <input type="date" id="launchDate" min="" />
+                                </div>
+                                <div class="d-flex flex-column my-4">
+                                    <label for="gamePrice">販售價格</label>
+                                    <input type="text" id="gamePrice" placeholder="Price" />
+                                </div>
+                                <div class="d-flex flex-column my-4 game-Main-Img">
+                                    <label for="File">遊戲主圖(限10MB以下)</label>
+                                    <input type="file" name="File" id="fileupload"
+                                        accept="image/gif, image/jpeg, image/png" />
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column col-7">
+                                <label>遊戲標籤</label>
+                                <div id="gameTags-options" class="placeholder-div" data-placeholder="右側選擇遊戲標籤"></div>
+                                <img id="imagePreview" alt="請放遊戲主圖預覽" />
+                            </div>
+                            <div class="col-3 position-relative">
+                                <label for="gameTags">請選擇遊戲標籤(最多選六個)</label>
+                                <div class="search-container">
+                                    <input type="text" id="searchInput" placeholder="搜尋選項..." />
+                                    <button id="clearBtn">清除搜尋</button>
+                                </div>
+                                <button id="clearSelectedBtn">清除全部</button>
+                                <div class="checkbox-list" id="checkboxList">
+                                    <!-- 手動添加的 checkbox 選項 -->
+                                    <label><input type="checkbox" value="選項 1" />選項 1</label>
+                                    <label><input type="checkbox" value="第一人稱" />第一人稱</label>
+                                    <label><input type="checkbox" value="第三人稱" />第三人稱</label>
+                                    <label><input type="checkbox" value="傳奇人物" />傳奇人物</label>
+                                    <label><input type="checkbox" value="MMORPG" />MMORPG</label>
+                                    <label><input type="checkbox" value="角色扮演" />角色扮演</label>
+                                    <label><input type="checkbox" value="開放世界" />開放世界</label>
+                                    <label><input type="checkbox" value="選項 8" />選項 8</label>
+                                    <label><input type="checkbox" value="未來科技" />未來科技</label>
+                                    <label><input type="checkbox" value="選項 10" />選項 10</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <label for="gameDescription">遊戲描述(限100字)</label>
+                            <textarea name="" id="gameDescription" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </form>
+                <form class="form_list accordion-item" action="">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseTwo">
+                            遊戲圖面/影片
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                        <div class="d-flex flex-column my-4 game-Main-Img">
+                            <label for="File">遊戲畫面或影片(限10MB以下) 允許多選</label>
+                            <input type="file" name="File" multiple id="game-media-upload"
+                                accept="image/gif, image/jpeg, image/png, video/mp4, video/webm, video/ogg" />
+                        </div>
+                        <div id="media-preview" class="d-flex flex-wrap mt-4">
+                            <!-- 圖片或影片預覽會在這裡顯示 -->
+                        </div>
+                        <!-- 隱藏的表單來提交文件順序和縮略圖 -->
+                        <form id="mediaForm" action="/Controller/SaveMediaOrder" method="post"
+                            enctype="multipart/form-data">
+                            <input type="hidden" name="mediaOrder" id="mediaOrder">
+                            <input type="hidden" name="thumbnails" id="thumbnails"> <!-- 用來存儲影片的縮略圖 -->
+                            <button type="submit" class="btn btn-dark mt-3">保存順序</button>
+                        </form>
+                    </div>
+                </form>
+                <form class="form_list accordion-item" action="">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseThree">
+                            遊戲公告
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                        <div class="enentContainer">
+                            <!-- 放置公告卡片的區域 -->
+                            <div id="card-container" class="row">
+                                <!-- 公告卡片會在這裡顯示 -->
+                            </div>
+
+                            <!-- 按鈕觸發 Modal 彈窗 -->
+                            <button id="open-modal-btn" class="btn btn-primary mt-4" type="button"
+                                data-bs-toggle="modal" data-bs-target="#eventModal">
+                                新增公告
+                            </button>
+
+                            <!-- Modal 彈窗 -->
+                            <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="eventModalLabel">新增公告</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="d-flex flex-column mb-4 col-6">
+                                                    <label for="modalEventTitle">公告標題</label>
+                                                    <input type="text" id="modalEventTitle" placeholder="限制30字元" />
+                                                </div>
+                                                <div class="d-flex flex-column mb-4 col-6">
+                                                    <label for="modalEventHint">預告詞</label>
+                                                    <input type="text" id="modalEventHint" placeholder="限制30字元" />
+                                                </div>
+                                                <div class="d-flex flex-column mb-4 col-6">
+                                                    <label for="modalEventDay">公告日期</label>
+                                                    <input type="date" id="modalEventDay" />
+                                                </div>
+                                                <div class="d-flex flex-column mb-4 col-6">
+                                                    <label for="modalEventFile">公告圖示(限10MB以下)</label>
+                                                    <input type="file" id="modalEventFile"
+                                                        accept="image/jpeg, image/png, image/webp" />
+                                                </div>
+                                                <div class="d-flex flex-column col-12">
+                                                    <label for="modalEventDescription">公告詳細描述</label>
+                                                    <textarea id="modalEventDescription"
+                                                        placeholder="Description"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">取消</button>
+                                            <button type="button" id="save-event-btn"
+                                                class="btn btn-primary">保存公告</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                <form class="form_list accordion-item" action="">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                            關於此遊戲
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                        <div class="d-flex flex-column w-100 mb-4">
+                            <label for="gameAbout">關於此遊戲</label>
+                            <input type="text" id="gameAbout" placeholder="限制50字元" />
+                        </div>
+                        <div id="image-section" class="row">
+                            <!-- 初始的遊戲描述圖區塊 -->
+                        </div>
+                        <!-- 生成按鈕 -->
+                        <button id="add-image-section" type="button" class="btn btn-primary mt-3">新增圖片描述</button>
+                </form>
+            </div>
+            <div class="btn_group">
+                <button class="cancel">取消</button>
+                <button class="store">儲存</button>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+
+
+    <!-- 類別下拉 -->
+    <script>
+        // 打開或關閉選項列表
+        document
+            .getElementById("category-selected")
+            .addEventListener("click", function (event) {
+                event.stopPropagation(); // 阻止事件冒泡，避免關閉選單
+                toggleOptions();
+            });
+        // 選中某個選項
+        function selectOption(option) {
+            document.getElementById("category-selected").textContent =
+                option;
+            closeOptions();
+        }
+        // 打開/關閉選項
+        function toggleOptions() {
+            var options = document.getElementById("options");
+            options.style.display =
+                options.style.display === "block" ? "none" : "block";
+        }
+        // 關閉選項列表
+        function closeOptions() {
+            document.getElementById("options").style.display = "none";
+        }
+        // 點擊頁面其他地方時，隱藏選項列表
+        document.addEventListener("click", function (event) {
+            closeOptions();
+        });
+        // 點擊選項列表內部時，阻止事件冒泡，避免點擊時關閉選單
+        document
+            .getElementById("options")
+            .addEventListener("click", function (event) {
+                event.stopPropagation();
+            });
+    </script>
+
+    <!-- 標籤選擇 -->
+    <script>
+        const maxSelection = 6;  // 最大選擇數
+        const checkboxList = document.getElementById('checkboxList');
+        const selectedOptions = document.getElementById('gameTags-options');
+        const clearSelectedBtn = document.getElementById('clearSelectedBtn');
+        let selectedCount = 0;
+
+        // 當checkbox被點擊
+        checkboxList.addEventListener('change', function (event) {
+            const checkbox = event.target;
+            if (checkbox.tagName.toLowerCase() === 'input' && checkbox.type === 'checkbox') {
+                const value = checkbox.value;
+
+                if (checkbox.checked) {
+                    // 增加選擇的選項
+                    if (selectedCount < maxSelection) {
+                        addSelectedOption(value, checkbox);
+                        selectedCount++;
+                    } else {
+                        // 如果超過6個選擇，取消勾選
+                        checkbox.checked = false;
+                        alert('最多只能選擇6個項目');
+                    }
+                } else {
+                    // 移除選擇的選項
+                    removeSelectedOption(value, checkbox);
+                    selectedCount--;
+                }
+
+                // 控制剩餘的checkbox是否可以被點選
+                toggleCheckboxes();
+                // 顯示或隱藏「清除全部」按鈕
+                toggleClearAllButton();
+            }
+        });
+
+        // 每次增加或刪除選項後調用這個函數來更新placeholder
+        function addSelectedOption(value, checkbox) {
+            const span = document.createElement('span');
+            span.textContent = value + ' ';
+
+            // 創建個別清除按鈕
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = 'x';
+            removeBtn.style.width = '20px';
+            removeBtn.style.height = '22px';
+            removeBtn.style.marginLeft = '3px';
+            removeBtn.style.marginRight = '3px';
+            removeBtn.style.cursor = 'pointer';
+            removeBtn.addEventListener('click', function (event) {
+                event.preventDefault(); // 防止頁面刷新或其他默認行為
+                removeSelectedOption(value, checkbox);
+                checkbox.checked = false;
+                selectedCount--;
+                toggleCheckboxes();
+                toggleClearAllButton();
+                updatePlaceholder(); // 更新placeholder狀態
+            });
+
+            span.appendChild(removeBtn);
+            span.setAttribute('data-value', value);
+            selectedOptions.appendChild(span);
+
+            updatePlaceholder(); // 添加選項後更新placeholder狀態
+        }
+
+        // 從選定的div中移除項目
+        function removeSelectedOption(value, checkbox) {
+            const span = selectedOptions.querySelector(`[data-value="${value}"]`);
+            if (span) {
+                selectedOptions.removeChild(span);
+            }
+        }
+
+        // 當選擇到達最大值時禁用剩下的checkbox
+        function toggleCheckboxes() {
+            const checkboxes = checkboxList.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (!checkbox.checked && selectedCount >= maxSelection) {
+                    checkbox.parentElement.classList.add('tags-disabled');
+                } else {
+                    checkbox.parentElement.classList.remove('tags-disabled');
+                }
+            });
+        }
+
+        // 顯示或隱藏「清除全部」按鈕
+        function toggleClearAllButton() {
+            if (selectedCount > 0) {
+                clearSelectedBtn.style.display = 'inline-block';
+            } else {
+                clearSelectedBtn.style.display = 'none';
+            }
+        }
+
+        // 清除全部選中的項目
+        clearSelectedBtn.addEventListener('click', function (event) {
+            // 阻止默認行為（如果按鈕是表單的一部分，這很重要）
+            event.preventDefault();
+
+            // 清空 gameTags-options 中的內容
+            selectedOptions.innerHTML = ''; // 不要再放入「選中的項目將顯示在這裡」這類文字
+
+            // 取消所有複選框的選擇
+            const checkboxes = checkboxList.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.parentElement.classList.remove('tags-disabled');
+            });
+
+            // 重置選擇計數
+            selectedCount = 0;
+
+            // 隱藏「清除全部」按鈕
+            clearSelectedBtn.style.display = 'none';
+
+            updatePlaceholder(); // 清空選項後更新placeholder狀態
+        });
+
+        // 搜索框過濾
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function () {
+            const filter = searchInput.value.toLowerCase();
+            const labels = checkboxList.querySelectorAll('label');
+            labels.forEach(label => {
+                const text = label.textContent.toLowerCase();
+                label.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
+
+        // 清除按鈕功能
+        const clearBtn = document.getElementById('clearBtn');
+        clearBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // 防止按鈕的默認行為導致頁面刷新
+            searchInput.value = ''; // 清空搜尋框
+            searchInput.dispatchEvent(new Event('input')); // 觸發搜尋過濾功能以重置列表
+        });
+
+        // 標籤div顯示placeholder文字
+        const gameTagsOptions = document.getElementById('gameTags-options');
+
+        function updatePlaceholder() {
+            // 檢查是否有選中的項目，移除所有的空白字符來判斷是否真的有內容
+            if (gameTagsOptions.textContent.trim() === '') {
+                gameTagsOptions.classList.remove('has-content');
+            } else {
+                gameTagsOptions.classList.add('has-content');
+            }
+        }
+
+        // 初次載入時更新placeholder狀態
+        updatePlaceholder();
+
+        // 每次輸入內容都會觸發更新
+        gameTagsOptions.addEventListener('input', updatePlaceholder);
+    </script>
+
+    <!-- 遊戲主圖預覽 -->
+    <script>
+        //popover
+        const popoverTriggerList = document.querySelectorAll(
+            '[data-bs-toggle="popover"]'
+        );
+        const popoverList = [...popoverTriggerList].map(
+            (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+        );
+        //預覽圖片
+        document
+            .getElementById("fileupload")
+            .addEventListener("change", function (event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = document.getElementById("imagePreview");
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+    </script>
+
+    <!-- 發行日期不能低於今天 -->
+    <script>
+        // 初始化日期輸入框的最小日期為今天
+        window.onload = function () {
+            const today = new Date().toISOString().split('T')[0]; // 獲取當前日期並格式化為 YYYY-MM-DD
+            document.getElementById('launchDate').setAttribute('min', today);
+        };
+    </script>
+
+    <!-- 遊戲圖/影片預覽 -->
+    <script>
+        document.getElementById('game-media-upload').addEventListener('change', function (event) {
+            const files = event.target.files;
+            const previewContainer = document.getElementById('media-preview');
+            previewContainer.innerHTML = ""; // 清除之前的預覽
+            const thumbnails = []; // 用來存儲影片縮略圖
+
+            Array.from(files).forEach((file, index) => {
+                const mediaWrapper = document.createElement('div');
+                mediaWrapper.classList.add('media-item');
+                mediaWrapper.dataset.index = index; // 將索引綁定到每個項目
+                mediaWrapper.style.margin = '10px';
+                mediaWrapper.style.cursor = 'move'; // 顯示拖拽的指示
+
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '200px';
+                        img.style.aspectRatio = '16/9';
+                        mediaWrapper.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type.startsWith('video/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const video = document.createElement('video');
+                        video.src = e.target.result;
+                        video.style.maxWidth = '200px';
+                        video.controls = true;
+                        mediaWrapper.appendChild(video);
+
+                        // 當影片載入後，從影片中提取第一幀作為縮略圖
+                        video.addEventListener('loadeddata', function () {
+                            const canvas = document.createElement('canvas');
+                            const ctx = canvas.getContext('2d');
+                            canvas.width = video.videoWidth;
+                            canvas.height = video.videoHeight;
+                            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                            const thumbnail = canvas.toDataURL(); // 生成縮略圖的Base64
+                            thumbnails.push(thumbnail); // 保存縮略圖
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                previewContainer.appendChild(mediaWrapper);
+            });
+
+            // 初始化拖放排序功能
+            new Sortable(previewContainer, {
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                handle: '.media-item',
+                onEnd: function () {
+                    // 當拖拽結束時，更新順序到隱藏的表單字段中
+                    updateMediaOrder();
+                }
+            });
+
+            // 當提交表單時，將縮略圖存儲到隱藏的輸入框
+            document.getElementById('mediaForm').addEventListener('submit', function () {
+                document.getElementById('thumbnails').value = JSON.stringify(thumbnails);
+            });
+        });
+
+        function updateMediaOrder() {
+            const mediaOrder = Array.from(document.querySelectorAll('.media-item'))
+                .map(item => item.dataset.index); // 抓取每個項目的索引
+            document.getElementById('mediaOrder').value = mediaOrder.join(','); // 轉換為逗號分隔的字符串
+        }
+    </script>
+
+    <!-- 新增公告 -->
+    <script>
+        let eventCount = 0; // 記錄公告數量
+
+        // 當 "保存公告" 按鈕被點擊時，將公告添加到卡片區域
+        document.getElementById('save-event-btn').addEventListener('click', function () {
+            const title = document.getElementById('modalEventTitle').value;
+            const hint = document.getElementById('modalEventHint').value;
+            const date = document.getElementById('modalEventDay').value;
+            const description = document.getElementById('modalEventDescription').value;
+            const fileInput = document.getElementById('modalEventFile').files[0];
+
+            // 確保所有必填項都有內容
+            if (!title || !date || !description || !fileInput) {
+                alert('請填寫所有欄位並上傳圖片');
+                return;
+            }
+
+            eventCount++; // 公告編號累加
+
+            // 讀取圖片文件並生成卡片
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                // 創建卡片 HTML
+                const card = `
+                <div id="event-card-${eventCount}" class="col-4">
+                    <div class="each-card mb-4">
+                        <button class="btn btn-danger" type="button" onclick="deleteEventCard(${eventCount})"><i class="fa-solid fa-trash-can"></i></button>
+                        <div class="card text-bg-dark">
+                            <img src="${e.target.result}" class="card-img" alt="公告圖示" style="height: 200px; object-fit: cover;">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title">新聞</h5>
+                                <p class="card-text">${description}</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">${title}</h5>
+                            <p class="card-text md-announce-text">
+                                <small class="text-body-secondary for-larger-500-block">
+                                    ${hint}
+                                </small>
+                                <br>
+                                <small class="text-body-secondary">
+                                    ${date}
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+                // 將卡片插入到卡片容器中
+                document.getElementById('card-container').insertAdjacentHTML('beforeend', card);
+            };
+            reader.readAsDataURL(fileInput); // 讀取文件
+
+            // 重置 Modal 欄位並關閉
+            document.getElementById('modalEventTitle').value = '';
+            document.getElementById('modalEventHint').value = '';
+            document.getElementById('modalEventDay').value = '';
+            document.getElementById('modalEventFile').value = '';
+            document.getElementById('modalEventDescription').value = '';
+            var eventModal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
+            eventModal.hide();
+        });
+
+        // 刪除公告卡片
+        function deleteEventCard(cardId) {
+            const card = document.getElementById(`event-card-${cardId}`);
+            if (card) {
+                card.remove(); // 移除卡片
+            }
+        }
+    </script>
+
+    <script>
+        let aboutImageCount = 1;
+
+        document.getElementById('add-image-section').addEventListener('click', function () {
+            aboutImageCount++; // 計數器加1
+
+            // 獲取目標區域
+            const imageSection = document.getElementById('image-section');
+
+            // 創建新的區塊
+            const newImageBlock = document.createElement('div');
+            newImageBlock.classList.add('image-block', 'col-3');
+
+            // 插入新的 HTML 結構
+            newImageBlock.innerHTML = `
+        <div>
+            <img id="imageAboutPreview_${aboutImageCount}" alt="請放遊戲描述圖預覽" style="width: 150px; height: 150px;" />
+        </div>
+        <div class="d-flex flex-column mb-4">
+            <label for="gameAboutupload_${aboutImageCount}">遊戲描述圖(限10MB以下)</label>
+            <input type="file" name="File" id="gameAboutupload_${aboutImageCount}"
+                accept="image/gif, image/jpeg, image/png, image/webp" />
+        </div>
+        <div class="d-flex flex-column w-100 mb-4">
+            <label for="gameAboutTitle_${aboutImageCount}">圖片主題</label>
+            <input type="text" id="gameAboutTitle_${aboutImageCount}" placeholder="限制50字元" />
+        </div>
+        <div class="d-flex flex-column">
+            <label for="gameDescription_${aboutImageCount}">圖片描述</label>
+            <textarea id="gameDescription_${aboutImageCount}" placeholder="Description"></textarea>
+        </div>
+    `;
+
+            // 將新區塊添加到現有的區域
+            imageSection.appendChild(newImageBlock);
+
+            // 為新生成的上傳框添加事件監聽，實現圖片預覽功能
+            document.getElementById(`gameAboutupload_${aboutImageCount}`).addEventListener('change', function (event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = document.getElementById(`imageAboutPreview_${aboutImageCount}`);
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+#shelves {
+    width: 960px;
+    margin: auto;
+    padding: 50px 0;
+    color: white;
+}
+#shelves {
+    h2 {
+        font-size: 16px;
+        color: #ccc;
+        border-bottom: 2px solid rgba(146, 146, 146, 0.2);
+    }
+    .form_list .accordion-collapse {
+        padding: 15px;
+        color: #acb2b8;
+        font-size: 13px;
+    }
+}
+.accordion {
+    --bs-accordion-bg: none;
+}
+.accordion-item {
+    background-color: unset;
+    border: none;
+}
+.accordion-button {
+    color: white;
+}
+.accordion-button:focus {
+    box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+    color: white;
+    background-color: unset;
+    box-shadow: none;
+}
+.accordion-button::after {
+    content: "+";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background-image: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    scale: 2;
+}
+
+.accordion-button.collapsed::after {
+    transform: rotate(0deg);
+}
+
+.accordion-button:not(.collapsed)::after {
+    content: "-";
+    background-image: none;
+    transform: none;
+    scale: 3;
+    padding-bottom: 10px;
+    padding-left: 3px;
+}
+
+/*label、input、textarea區*/
+#shelves label {
+    margin-bottom: 2px;
+}
+
+#shelves input {
+    height: 40px;
+    padding: 10px;
+    background-color: #0004;
+    border: none;
+    color: #acb2b8;
+}
+
+#shelves input:focus {
+    outline: none;
+}
+
+#shelves input::placeholder {
+    color: #919191;
+}
+
+#shelves textarea {
+    padding: 15px;
+    background-color: #0004;
+    border: none;
+    color: #acb2b8;
+}
+
+#shelves textarea {
+    outline: none;
+}
+
+/*類別區*/
+#shelves .category-select {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
+#shelves #category-selected {
+    background-color: #0004;
+    padding: 10px;
+    color: #919191;
+}
+
+#shelves .category-select div {
+    background-color: #242424;
+    cursor: pointer;
+}
+
+#shelves .category-options {
+    display: none;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+#shelves .category-options div {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    height: 40px;
+}
+
+#shelves .category-options div:hover {
+    background-color: #ddd;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.search-container input {
+    width: calc(100% - 40px);
+    margin-bottom: 0;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.search-container button {
+    width: 80px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.checkbox-list {
+    height: 250px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.checkbox-list label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#gameTags-options {
+    position: relative;
+    padding: 10px;
+    height: 40px;
+    background-color: #0004;
+}
+
+.tags-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Placeholder樣式 */
+.placeholder-div::before {
+    content: attr(data-placeholder);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #aaa;
+    pointer-events: none;
+}
+
+/* 如果div中有文字則隱藏placeholder */
+.has-content::before {
+    display: none;
+}
+
+#clearSelectedBtn {
+    display: none;
+    height: 25px;
+    position: absolute;
+    top: 80px;
+    right: 35px;
+}
+
+#checkboxList label {
+    height: 25px;
+    display: flex;
+    align-items: center;
+}
+
+#checkboxList input {
+    margin: 0 10px 0 0;
+}
+
+#imagePreview {
+    width: 320px;
+    aspect-ratio: 16 / 9;
+    margin-top: 20px;
+}
+
+.game-Main-Img {
+    width: 691px;
+}
+
+#media-preview {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.media-item {
+    position: relative;
+    cursor: move;
+    /* 添加拖拽指示 */
+}
+
+.sortable-ghost {
+    opacity: 0.4;
+    background-color: #ccc;
+}
+
+.modal-content {
+    background: linear-gradient(to bottom, #214d6f 0%, #1a2a3c 400px);
+}
+
+/* 卡片隱藏文字 */
+.each-card {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+}
+
+.each-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.each-card:hover::before {
+    opacity: 1;
+}
+
+.each-card .card-img-overlay {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.each-card:hover .card-img-overlay {
+    opacity: 1;
+}
+
+.card-title {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #ccc;
+    margin: 8px 0;
+}
+
+.md-announce-text {
+    margin-top: 4px;
+}
+
+.md-announce-text small {
+    line-height: 20px;
+}
+
+.card-body {
+    padding: 5px 10px;
+}
+
+.card-body p .text-body-secondary {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.for-larger-500-block {
+    display: block;
+}

@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ProductPage demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../layout/layout.css">
+    <link rel="stylesheet" href="./Navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Yourstore-navbar/Navbar.css">
+    <link rel="stylesheet" href="../commom/common.css">
+    <link rel="stylesheet" href="./Storm(NotifyPage).css">
+</head>
+
+<body>
+    <header>
+        <div class="container" id="app">
+            <a class="navbar-brand logo" href="#"><img class="w-100" src="../img/logo_steam.png" alt=""></a>
+            <div class="navbar lg">
+                <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    商店
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li><a class="dropdown-item" href="#">探索佇列</a></li>
+                                    <li><a class="dropdown-item" href="#">願望清單</a></li>
+                                    <li><a class="dropdown-item" href="#">點數商店</a></li>
+                                    <li><a class="dropdown-item" href="#">新聞</a></li>
+                                    <li><a class="dropdown-item" href="#">統計資料</a></li>
+                                    <li><a class="dropdown-item" href="#">關於</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    社群
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                    <li><a class="dropdown-item" href="#">討論區</a></li>
+                                    <li><a class="dropdown-item" href="#">工作坊</a></li>
+                                    <li><a class="dropdown-item" href="#">市集</a></li>
+                                    <li><a class="dropdown-item" href="#">實況直播</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">關於</a></li>
+                        <li class="breadcrumb-item"><a href="#">客服中心</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="log">
+                <button type="button" class="btn btn-primary btn-sm" @click="change_status">切換狀態</button>
+                <!-- 沒登入時顯示 -->
+                <template v-if="!current_status">
+                    <a href="#">登入</a>
+                </template>
+                <!-- 登入後 -->
+                <template v-if="current_status">
+                    <div class="log-in-type">
+                        <!-- notify，請點擊右上角小鈴鐺 -->
+                        <p class="notify">
+                            <button class="btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse-notify" aria-expanded="false" aria-controls="collapse-notify">
+                                <img src="../img/bell.svg" alt="">
+                            </button>
+                        </p>
+                        <div class="collapse-notify collapse" id="collapse-notify">
+                            <div class="card card-body">
+                                <div class="title">
+                                    <div class="title-name">
+                                        通知
+                                    </div>
+                                    <button class="btn view">檢視全部</button>
+                                </div>
+                                <div class="content">
+                                    <!-- 沒通知 顯示-->
+                                    <!-- <template> -->
+                                    <p class="status">您目前沒有任何新通知。</p>
+                                    <p class="sug">在此處您可見到與願望清單、好友、遊戲、物品庫和其他內容相關的storm內容</p>
+                                    <!-- </template> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <div class="dropdown">
+                                <a class="btn  dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    tenyadesu5487
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark py-0" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item"
+                                            href="../personal(user)/personal_firstpage.html">檢視我的個人檔案</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="../personal(user)/personal_firstpage.html">帳戶詳細個人資料：<span>tenyadesu5487</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">商店偏好設定</a></li>
+                                    <li><a class="dropdown-item" href="#">檢視我的錢包：<span>NT$</span><span>77.88</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">登出帳戶...</a></li>
+                                </ul>
+                            </div>
+                            <a href="#" class="wallet"><span>NT$</span><span>77.88</span></a>
+
+                        </div>
+                        <div class="user-headshot"><img src="https://picsum.photos/34/34/?random=10"></div>
+                    </div>
+
+                </template>
+            </div>
+            <nav class="navbar  bg-body-tertiary ">
+                <div class="container-fluid">
+
+                    <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+
+                        <span class="top"></span>
+                        <span class="middle"></span>
+                        <span class="bottom"></span>
+
+                    </button>
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
+                        id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+
+                        <div class="offcanvas-body p-0">
+
+                            <ul class="accordion p-0" id="offcanvas-accordion">
+                                <!-- 登入前 的登入按鈕 -->
+                                <template v-if="!current_status">
+                                    <li class="aonly"><a href="../login/login.html">登入</a></li>
+                                </template>
+                                <!-- 登入後的 user資訊-->
+                                <template v-if="current_status">
+                                    <li class="card-user">
+                                        <div class="user-info">
+                                            <img src="https://picsum.photos/34/34/?random=10">
+                                            &ensp;
+                                            <a href="../personal(user)/personal_firstpage.html">tenyadesu5487</a>
+                                        </div>
+                                        <div class="wallet">
+                                            <span>錢包</span>
+                                            <span class="money">（NT$</span>
+                                            <span class="money dollar">77.88</span>
+                                            <span class="money">）</span>
+
+                                        </div>
+                                    </li>
+                                </template>
+                                <!-- 通知，有登入才有 -->
+                                <template v-if="current_status">
+                                    <li class="drop">
+                                        <div class="accordion-item">
+
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse-notification"
+                                                aria-expanded="true" aria-controls="collapse-notification">
+                                                <p><span>通知&ensp;</span><span>0</span></p>
+                                            </button>
+
+                                            <div id="collapse-notification" class="accordion-collapse collapse"
+                                                data-bs-parent="#offcanvas-accordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <li>目前沒通知</li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template v-if="current_status">
+                                <li class="drop">
+                                    <div class="accordion-item">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-store"
+                                            aria-expanded="true" aria-controls="collapse-store">
+                                            <p>商店</p>
+                                        </button>
+
+                                        <div id="collapse-store" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                                    <li><a href="#">探索佇列</a></li>
+                                                    <li><a href="#">願望清單</a></li>
+                                                    <li><a href="#">點數商店</a></li>
+                                                    <li><a href="#">新聞</a></li>
+                                                    <li><a href="#">統計資料</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="drop">
+                                    <div class="accordion-item">
+
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse-community"
+                                            aria-expanded="true" aria-controls="collapse-community">
+                                            <p>社群</p>
+                                        </button>
+
+                                        <div id="collapse-community" class="accordion-collapse collapse"
+                                            data-bs-parent="#offcanvas-accordion">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li><a href="../shopstore/shopstroeHomePage.html">首頁</a></li>
+                                                    <li><a href="#">討論區</a></li>
+                                                    <li><a href="#">工作坊</a></li>
+                                                    <li><a href="#">市集</a></li>
+                                                    <li><a href="#">實況直播</a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- 您和好友，也是登入才會有 -->
+                                <template v-if="current_status">
+                                    <li class="drop">
+                                        <div class="accordion-item">
+
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse-friend"
+                                                aria-expanded="true" aria-controls="collapse-friend">
+                                                <p>您和好友</p>
+                                            </button>
+
+                                            <div id="collapse-friend" class="accordion-collapse collapse"
+                                                data-bs-parent="#offcanvas-accordion">
+                                                <div class="accordion-body">
+                                                    <ul>
+                                                        <li><a href="#">動態</a></li>
+                                                        <li><a href="../personal(user)/personal_firstpage.html">個人檔案</a>
+                                                        </li>
+                                                        <li><a href="#">好友</a></li>
+                                                        <li><a href="#">遊戲</a></li>
+                                                        <li><a href="#">內容</a></li>
+                                                        <li><a href="#">物品庫</a></li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template>
+                                <!-- 聊天，登入後才有朋友可以聊天 -->
+                                <template v-if="current_status">
+                                    <li class="aonly"><a href="../message/message.html">聊天</a></li>
+                                </template>
+                                <li class="aonly"><a href="#">關於</a></li>
+                                <li class="aonly"><a href="#">客服</a></li>
+                                <li class="func">
+                                    <!-- 以下3個只會再登入出現 -->
+                                    <template v-if="current_status">
+                                        <a href="#" class="btn  change-language">帳戶詳細資訊</a>
+                                        <a href="#" class="btn  change-language">商店偏好設定</a>
+                                        <a href="#" class="btn  change-language">變更使用者</a>
+                                    </template v-if="current_status">
+                                    <a href="#" class="btn  change-language">變更語言</a>
+                                    <a href="#" class=" btn  get-app">取得 Steam 行動應用程式</a>
+                                    <button type="button" class="btn btn-primary btn-sm text-center"
+                                        @click="change_status">切換狀態</button>
+                                </li>
+                            </ul>
+                            <div class="offcanvas-footer">
+                                <div>
+                                    <p>© 版權所有?並沒有。純為教育使用，非商業用途，所有商標皆純屬虛構。</p>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">隱私權政策</a></li>
+                                            <li class="breadcrumb-item"><a href="#">法律聲明</a></li>
+                                            <li class="breadcrumb-item"><a href="#">Storm訂戶協議</a></li>
+                                            <li class="breadcrumb-item"><a href="#">退款</a></li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+    <main>
+        <div class="profile_card">
+            <img src="./Images/Cartman(64x64).jpg" alt="">
+            <div class="card_body">
+                <a href="#">Cartman</a>
+                <span>»</span>
+                <a href="#">通知</a>
+            </div>
+        </div>
+        <div class="container">
+            <!-- 個人檔案Title-->
+
+            <!-- 內容 -->
+            <!-- 通知Title-->
+            <div class="notify_area">
+                <div class="title">
+                    <span>通知</span>
+                    <span>（0 則未讀）</span>
+                </div>
+                <!-- 通知 -->
+                <div class="col_controller">
+                    <div class="col-8">
+                        <div class="notify_card">
+                            <img src="./Images/Mouse(44x44).jpg" alt="">
+                            <div class="card_body">
+                                <div class="notify_type_info_time">
+                                    <div class="friend_add_img">
+                                        <!-- svg -->
+                                        <!-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                            class="SVGIcon_Button SVGIcon_AddFriend" x="0px" y="0px" width="256px"
+                                            height="256px" viewBox="0 0 256 256">
+                                            <g class="friendHead"
+                                                transform="matrix(1.34048,0,0,1.34048,-10.0942,-5.50445)">
+                                                <circle cx="86.296" cy="47.419" r="33.526" fill="currentcolor"></circle>
+                                            </g>
+                                            <path class="friendBody"
+                                                d="M100.353,170.882c0-23.589,10.397-44.736,26.842-59.152c-3.352-0.423-6.773-0.649-10.257-0.649H94.231	c-39.775,0-56.481,28.271-56.481,63.099v41.88c0,0-0.3,16.369,35.917,21.813c36.217,5.444,73.651,5,73.651,5 C119.666,230.681,100.353,203.044,100.353,170.882z"
+                                                fill="currentColor"></path>
+                                            <path class="plusCircle"
+                                                d="M179.01,103.892c-36.998,0-66.99,29.992-66.99,66.99s29.994,66.989,66.99,66.989c36.997,0,66.99-29.991,66.99-66.989 S216.008,103.892,179.01,103.892z M217.893,175.882h-33.647v33.882c0,2.762-2.239,5-5,5s-5-2.238-5-5v-33.882h-33.647 c-2.762,0-5-2.238-5-5c0-2.763,2.238-5,5-5h33.647V132.47c0-2.762,2.239-5,5-5s5,2.238,5,5v33.412h33.647c2.762,0,5,2.237,5,5 C222.893,173.643,220.654,175.882,217.893,175.882z"
+                                                fill="currentColor"></path>
+                                        </svg> -->
+
+                                        <!-- img -->
+                                        <img src="./Images/Add_Friend.png" alt="">
+
+                                    </div>
+
+
+                                    <div>好友邀請</div>
+                                    <div>8月9日 下午12:12</div>
+                                </div>
+                                <div class="friend_add_name">吃飽太閒</div>
+                                <div class="friend_add_text">和您已成為好友</div>
+                            </div>
+                        </div>
+                        <div class="notify_card">
+                            <img src="./Images/KindomRush.jpg" alt="">
+                            <div class="card_body">
+                                <div class="notify_type_info_time">
+                                    <div class="friend_add_img">
+                                        <!-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                            class="SVGIcon_Button SVGIcon_AddFriend" x="0px" y="0px" width="256px"
+                                            height="256px" viewBox="0 0 256 256">
+                                            <g class="friendHead"
+                                                transform="matrix(1.34048,0,0,1.34048,-10.0942,-5.50445)">
+                                                <circle cx="86.296" cy="47.419" r="33.526" fill="currentcolor"></circle>
+                                            </g>
+                                            <path class="friendBody"
+                                                d="M100.353,170.882c0-23.589,10.397-44.736,26.842-59.152c-3.352-0.423-6.773-0.649-10.257-0.649H94.231	c-39.775,0-56.481,28.271-56.481,63.099v41.88c0,0-0.3,16.369,35.917,21.813c36.217,5.444,73.651,5,73.651,5 C119.666,230.681,100.353,203.044,100.353,170.882z"
+                                                fill="currentColor"></path>
+                                            <path class="plusCircle"
+                                                d="M179.01,103.892c-36.998,0-66.99,29.992-66.99,66.99s29.994,66.989,66.99,66.989c36.997,0,66.99-29.991,66.99-66.989 S216.008,103.892,179.01,103.892z M217.893,175.882h-33.647v33.882c0,2.762-2.239,5-5,5s-5-2.238-5-5v-33.882h-33.647 c-2.762,0-5-2.238-5-5c0-2.763,2.238-5,5-5h33.647V132.47c0-2.762,2.239-5,5-5s5,2.238,5,5v33.412h33.647c2.762,0,5,2.237,5,5 C222.893,173.643,220.654,175.882,217.893,175.882z"
+                                                fill="currentColor"></path>
+                                        </svg> -->
+                                        <img src="./Images/Add_Item.png" alt="">
+                                    </div>
+                                    <div>物品庫新庫品</div>
+                                    <div>8月10日 下午14:12</div>
+                                </div>
+                                <div class="friend_add_name">Kindom Rush Frontiers 擴充包</div>
+                                <div class="friend_add_text">Steam Community Items</div>
+                            </div>
+                        </div>
+                        <div class="notify_card">
+                            <img src="./Images/Mouse(44x44).jpg" alt="">
+                            <div class="card_body">
+                                <div class="notify_type_info_time">
+                                    <div class="friend_add_img">
+                                        <!-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                            class="SVGIcon_Button SVGIcon_AddFriend" x="0px" y="0px" width="256px"
+                                            height="256px" viewBox="0 0 256 256">
+                                            <g class="friendHead"
+                                                transform="matrix(1.34048,0,0,1.34048,-10.0942,-5.50445)">
+                                                <circle cx="86.296" cy="47.419" r="33.526" fill="currentcolor"></circle>
+                                            </g>
+                                            <path class="friendBody"
+                                                d="M100.353,170.882c0-23.589,10.397-44.736,26.842-59.152c-3.352-0.423-6.773-0.649-10.257-0.649H94.231	c-39.775,0-56.481,28.271-56.481,63.099v41.88c0,0-0.3,16.369,35.917,21.813c36.217,5.444,73.651,5,73.651,5 C119.666,230.681,100.353,203.044,100.353,170.882z"
+                                                fill="currentColor"></path>
+                                            <path class="plusCircle"
+                                                d="M179.01,103.892c-36.998,0-66.99,29.992-66.99,66.99s29.994,66.989,66.99,66.989c36.997,0,66.99-29.991,66.99-66.989 S216.008,103.892,179.01,103.892z M217.893,175.882h-33.647v33.882c0,2.762-2.239,5-5,5s-5-2.238-5-5v-33.882h-33.647 c-2.762,0-5-2.238-5-5c0-2.763,2.238-5,5-5h33.647V132.47c0-2.762,2.239-5,5-5s5,2.238,5,5v33.412h33.647c2.762,0,5,2.237,5,5 C222.893,173.643,220.654,175.882,217.893,175.882z"
+                                                fill="currentColor"></path>
+                                        </svg> -->
+                                        <img src="./Images/Add_Item.png" alt="">
+                                    </div>
+                                    <div>好友邀請</div>
+                                    <div>8月9日 下午12:12</div>
+                                </div>
+                                <div class="friend_add_name">吃飽太閒</div>
+                                <div class="friend_add_text">和您已成為好友</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 按鈕區 -->
+                    <div class="col-4">
+                        <div class="btn_controller">
+                            <div class="mark_and_setting_btn">
+                                <button type="button" class="btn btn-secondary mark_button">
+                                    標記全部為已讀
+                                </button>
+                                <button type="button" class="btn btn-secondary setting_button">
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                        class="SVGIcon_Button SVGIcon_Settings _1XXJX0-wXgz7O3Bd0qimBX" x="0px" y="0px"
+                                        width="256px" height="256px" viewBox="-305.5 396.5 256 256"
+                                        enable-background="new -305.5 396.5 256 256">
+                                        <path
+                                            d="M-232.755,589.942l3.103,2.408c5.78,4.492,11.973,8.18,18.409,10.959l3.581,1.547l2.276,33.783 c0.089,1.33,1.385,2.54,2.715,2.54h48.62c1.355,0,2.745-1.273,2.852-2.621l2.74-33.284l3.602-1.496 c6.406-2.656,12.646-6.262,18.554-10.707l3.137-2.366l30.578,15.009c1.155,0.571,2.924,0.017,3.563-1.087l24.303-42.1 c0.674-1.173,0.265-3.014-0.852-3.785l-27.872-19.309l0.469-3.832c0.495-4.032,0.725-7.395,0.725-10.57 c0-3.129-0.227-6.5-0.687-10.307l-0.469-3.896l28.699-19.253c1.112-0.741,1.509-2.473,0.84-3.627l-24.3-42.104 c-0.657-1.139-2.502-1.727-3.7-1.155l-31.208,14.748l-3.091-2.341c-5.571-4.224-11.466-7.688-17.522-10.306l-3.58-1.548 l-2.34-34.887c-0.089-1.33-1.381-2.536-2.715-2.536h-48.617c-1.355,0-2.74,1.274-2.851,2.626l-2.834,34.371l-3.593,1.501 c-6.082,2.535-12.028,5.924-17.667,10.071l-3.124,2.302l-31.392-15.413c-1.168-0.575-2.924-0.025-3.559,1.074l-24.309,42.107 c-0.678,1.172-0.264,3.014,0.848,3.781l28.068,19.444l-0.524,3.883c-0.592,4.378-0.865,8.018-0.865,11.462 c0,2.988,0.179,6.065,0.55,9.403l0.431,3.853l-28.528,19.125c-1.108,0.742-1.509,2.468-0.84,3.632l24.308,42.1 c0.656,1.142,2.489,1.726,3.7,1.154L-232.755,589.942z M-177.498,560.051c-19.311,0-35.02-15.709-35.02-35.02 s15.709-35.02,35.02-35.02s35.02,15.709,35.02,35.02S-158.188,560.051-177.498,560.051z"
+                                            fill="currentColor"></path>
+                                    </svg>
+                                    設定
+                                </button>
+                            </div>
+                            <fieldset class="filter_by">
+                                <legend>篩選依據：</legend>
+                                <div class="filter_type">
+                                    <label>
+                                        <input type="checkbox" name="friend_invite">
+                                        <span></span>
+                                        好友邀請
+                                    </label>
+                                </div>
+                                <div class="filter_type">
+                                    <label>
+                                        <input type="checkbox" name="item_library">
+                                        <span></span>
+                                        物品庫物品
+                                    </label>
+                                </div>
+
+
+                                <button type="button" class="btn btn-secondary reset_filter">重設</button>
+
+                            </fieldset>
+                        </div>
+
+
+                        <!-- <button class="setting_button">
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" class="SVGIcon_Button SVGIcon_Settings _1XXJX0-wXgz7O3Bd0qimBX" x="0px" y="0px" width="256px" height="256px" viewBox="-305.5 396.5 256 256" enable-background="new -305.5 396.5 256 256"><path d="M-232.755,589.942l3.103,2.408c5.78,4.492,11.973,8.18,18.409,10.959l3.581,1.547l2.276,33.783 c0.089,1.33,1.385,2.54,2.715,2.54h48.62c1.355,0,2.745-1.273,2.852-2.621l2.74-33.284l3.602-1.496 c6.406-2.656,12.646-6.262,18.554-10.707l3.137-2.366l30.578,15.009c1.155,0.571,2.924,0.017,3.563-1.087l24.303-42.1 c0.674-1.173,0.265-3.014-0.852-3.785l-27.872-19.309l0.469-3.832c0.495-4.032,0.725-7.395,0.725-10.57 c0-3.129-0.227-6.5-0.687-10.307l-0.469-3.896l28.699-19.253c1.112-0.741,1.509-2.473,0.84-3.627l-24.3-42.104 c-0.657-1.139-2.502-1.727-3.7-1.155l-31.208,14.748l-3.091-2.341c-5.571-4.224-11.466-7.688-17.522-10.306l-3.58-1.548 l-2.34-34.887c-0.089-1.33-1.381-2.536-2.715-2.536h-48.617c-1.355,0-2.74,1.274-2.851,2.626l-2.834,34.371l-3.593,1.501 c-6.082,2.535-12.028,5.924-17.667,10.071l-3.124,2.302l-31.392-15.413c-1.168-0.575-2.924-0.025-3.559,1.074l-24.309,42.107 c-0.678,1.172-0.264,3.014,0.848,3.781l28.068,19.444l-0.524,3.883c-0.592,4.378-0.865,8.018-0.865,11.462 c0,2.988,0.179,6.065,0.55,9.403l0.431,3.853l-28.528,19.125c-1.108,0.742-1.509,2.468-0.84,3.632l24.308,42.1 c0.656,1.142,2.489,1.726,3.7,1.154L-232.755,589.942z M-177.498,560.051c-19.311,0-35.02-15.709-35.02-35.02 s15.709-35.02,35.02-35.02s35.02,15.709,35.02,35.02S-158.188,560.051-177.498,560.051z" fill="currentColor"></path></svg>
+                                    設定
+                                </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="privacy">
+                <div class="text">
+                    <p>© 版權所有?並沒有。純為教育使用，非商業用途，所有商標皆純屬虛構。</p>
+                    <p>貨物既出，恕不退貨</p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">隱私權政策</a></li>
+                            <li class="breadcrumb-item"><a href="#">法律聲明</a></li>
+                            <li class="breadcrumb-item"><a href="#">Storm訂戶協議</a></li>
+                            <li class="breadcrumb-item"><a href="#">退款</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="logo">
+                    <img src="./layout_img/logo_steam.png" alt="">
+                </div>
+            </div>
+            <div class="footer-navbar">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="https://www.build-school.com/">關於storm</a></li>
+                        <li class="breadcrumb-item"><a href="https://rdrc.mnd.gov.tw/page/index">人才招募</a></li>
+                        <li class="breadcrumb-item"><a href="#">客服中心</a></li>
+                        <li class="breadcrumb-item"><a href="#">storm發行</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="../layout/layout.js"></script>
+</body>
+
+</html>
